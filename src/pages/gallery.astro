@@ -1,28 +1,55 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Eyebrow from '../components/Eyebrow.astro';
 import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
 import CTABand from '../components/CTABand.astro';
 import { site } from '../data/site';
 
-// Tile labels and spans are verbatim from reference/Gallery.dc.html.
-// When photos exist: put gallery-01.jpg ... gallery-12.jpg in src/assets/images/, import them,
-// add `src` + real `alt` here, and render <Image src={t.src} alt={t.alt} loading="lazy" /> in place of PhotoPlaceholder.
+// Tile order, spans and tones are verbatim from reference/Gallery.dc.html.
+// Tiles with a `photo` render an astro:assets <Image> (lazy, object-fit: cover, `pos` = object-position).
+// Tiles without one keep the PhotoPlaceholder and its reference label. To swap in the last photo,
+// import the file above, then add `photo`, `alt` and `pos` to that tile.
+import photo1 from '../assets/images/photo-1-brown-dog-portrait.png';
+import photo2 from '../assets/images/photo-2-spotted-dog-brush.png';
+import photo3 from '../assets/images/photo-3-brown-dog-profile.png';
+import photo4 from '../assets/images/photo-4-dog-pheasant-portrait.png';
+import photo5 from '../assets/images/photo-5-man-and-dog-field.png';
+import photo7 from '../assets/images/photo-7-three-dogs-forest-road.png';
+import photo8 from '../assets/images/photo-8-man-three-dogs-steps.png';
+import photo9 from '../assets/images/photo-9-five-dogs-forest-road.png';
+import photo10 from '../assets/images/photo-10-five-dogs-cabin-steps.png';
+import photo11 from '../assets/images/photo-11-dog-golden-dust.png';
+import photo12 from '../assets/images/photo-12-dog-autumn-leaves.png';
+
 type Tone = 'sage' | 'sand' | 'cream' | 'clay';
-const tiles: { n: string; tone: Tone; label: string; span?: 'big' | 'tall' | 'wide' }[] = [
-  { n: 'Gallery 01', tone: 'sage', label: 'Loose-leash walk down a neighborhood street', span: 'big' },
-  { n: '02', tone: 'cream', label: 'Puppy learning “sit”' },
-  { n: '03', tone: 'sand', label: 'High-five trick' },
-  { n: '04', tone: 'clay', label: 'Dog settled on a mat at home (tall)', span: 'tall' },
-  { n: '05', tone: 'sage', label: 'Treat hand-off, close-up' },
-  { n: '06', tone: 'sand', label: 'Happy owner and dog' },
-  { n: '07', tone: 'cream', label: 'Calm walk past another dog — wide shot', span: 'wide' },
-  { n: '08', tone: 'clay', label: 'Recall at the park' },
-  { n: '09', tone: 'sand', label: 'Puppy portrait (tall)', span: 'tall' },
-  { n: '10', tone: 'sage', label: 'Polite greeting at the door' },
-  { n: '11', tone: 'cream', label: 'Training gear: leash, treat pouch, mat' },
+type Span = 'big' | 'tall' | 'wide';
+const tiles: {
+  n: string;
+  tone: Tone;
+  label: string;
+  span?: Span;
+  photo?: ImageMetadata;
+  alt?: string;
+  pos?: string;
+}[] = [
+  { n: 'Gallery 01', tone: 'sage', label: 'Loose-leash walk down a neighborhood street', span: 'big', photo: photo10, alt: 'Five dogs resting on stone steps in front of a log cabin in autumn.', pos: '50% 50%' },
+  { n: '02', tone: 'cream', label: 'Puppy learning “sit”', photo: photo2, alt: 'A liver-and-white spotted dog walking through low brush and looking at the camera.', pos: 'center 30%' },
+  { n: '03', tone: 'sand', label: 'High-five trick', photo: photo4, alt: 'A brown dog sitting in tall dry grass beside a hunting bag with a pheasant hanging from it.', pos: 'center 30%' },
+  { n: '04', tone: 'clay', label: 'Dog settled on a mat at home (tall)', span: 'tall', photo: photo1, alt: 'A chocolate-brown pointer standing mid-step on a dirt path with autumn foliage behind it.', pos: 'center 30%' },
+  { n: '05', tone: 'sage', label: 'Treat hand-off, close-up', photo: photo11, alt: 'A dog leaping through a cloud of golden dust against a black background.', pos: 'center 40%' },
+  { n: '06', tone: 'sand', label: 'Happy owner and dog', photo: photo5, alt: 'A man kneeling in tall dry grass beside a brown dog sitting at attention.', pos: 'center 35%' },
+  { n: '07', tone: 'cream', label: 'Calm walk past another dog — wide shot', span: 'wide', photo: photo9, alt: 'Five dogs sitting and lying in a row on a forest road in autumn.', pos: 'center 50%' },
+  { n: '08', tone: 'clay', label: 'Recall at the park', photo: photo3, alt: 'A brown dog standing in profile in golden evening light.', pos: 'center 50%' },
+  { n: '09', tone: 'sand', label: 'Puppy portrait (tall)', span: 'tall', photo: photo7, alt: 'Three dogs sitting side by side on a forest road in autumn.', pos: 'center 40%' },
+  { n: '10', tone: 'sage', label: 'Polite greeting at the door', photo: photo8, alt: 'A man sitting on stone steps in autumn woods with three dogs.', pos: '50% 40%' },
+  { n: '11', tone: 'cream', label: 'Training gear: leash, treat pouch, mat', photo: photo12, alt: 'A brown dog sitting upright among fallen autumn leaves, wearing an orange collar with a bell.', pos: 'center 35%' },
   { n: '12', tone: 'clay', label: 'Resting after a good session' },
 ];
+
+const wideish = (span?: Span) => span === 'big' || span === 'wide';
+const sizesFor = (span?: Span) => (wideish(span) ? '(min-width: 768px) 580px, 100vw' : '(min-width: 768px) 285px, 50vw');
+const widthsFor = (span?: Span) => (wideish(span) ? [400, 800, 1200] : [200, 400, 600]);
 ---
 
 <BaseLayout
@@ -38,17 +65,29 @@ const tiles: { n: string; tone: Tone; label: string; span?: 'big' | 'tall' | 'wi
   </section>
 
   <div class="grid-wrap">
-    <ul class="container grid" aria-label="Photo gallery placeholders">
+    <ul class="container grid" aria-label="Photo gallery">
       {
         tiles.map((t) => (
           <li class:list={['tile', t.span && `tile--${t.span}`]}>
-            <PhotoPlaceholder
-              tone={t.tone}
-              variant={t.span === 'big' ? 'tile' : 'tile-sm'}
-              title={t.n}
-              caption={t.label}
-              label={`Photo placeholder: ${t.label}`}
-            />
+            {t.photo ? (
+              <Image
+                src={t.photo}
+                alt={t.alt ?? ''}
+                widths={widthsFor(t.span)}
+                sizes={sizesFor(t.span)}
+                loading="lazy"
+                decoding="async"
+                style={`object-position: ${t.pos ?? 'center'}`}
+              />
+            ) : (
+              <PhotoPlaceholder
+                tone={t.tone}
+                variant={t.span === 'big' ? 'tile' : 'tile-sm'}
+                title={t.n}
+                caption={t.label}
+                label={`Photo placeholder: ${t.label}`}
+              />
+            )}
           </li>
         ))
       }
@@ -82,6 +121,13 @@ const tiles: { n: string; tone: Tone; label: string; span?: 'big' | 'tall' | 'wi
   }
   .tile {
     min-width: 0;
+  }
+  .tile :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
   }
   .tile--big {
     grid-column: span 2;

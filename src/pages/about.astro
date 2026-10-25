@@ -1,7 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Eyebrow from '../components/Eyebrow.astro';
-import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
+import aboutPhoto from '../assets/images/photo-8-man-three-dogs-steps.png';
 import CTABand from '../components/CTABand.astro';
 import Icon from '../components/Icon.astro';
 import { site, about } from '../data/site';
@@ -44,13 +45,13 @@ const principles = [
       </section>
 
       <div class="portrait">
-        <!-- Swap for astro:assets <Image src={aboutPhoto} alt="..." /> once about.jpg exists. -->
-        <PhotoPlaceholder
-          tone="sage"
-          variant="center"
-          title="About photo"
-          caption="Lance with a dog, natural light, portrait (4:5)"
-          label="Photo placeholder: Lance with a dog"
+        <Image
+          src={aboutPhoto}
+          alt="A man sitting on stone steps in autumn woods with three dogs."
+          widths={[480, 720, 896]}
+          sizes="(min-width: 768px) 45vw, 100vw"
+          loading="eager"
+          fetchpriority="high"
         />
       </div>
 
@@ -148,8 +149,13 @@ const principles = [
   .portrait {
     margin-bottom: 20px;
   }
-  .portrait :global(.ph) {
+  .portrait :global(img) {
+    display: block;
+    width: 100%;
     height: 438px;
+    object-fit: cover;
+    object-position: 50% 40%;
+    border-radius: var(--radius-card);
   }
   .story {
     display: flex;
@@ -246,7 +252,7 @@ const principles = [
       margin-bottom: 0;
       aspect-ratio: 4 / 5;
     }
-    .portrait :global(.ph) {
+    .portrait :global(img) {
       height: 100%;
     }
     .intro {
