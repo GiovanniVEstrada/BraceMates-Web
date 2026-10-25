@@ -33,7 +33,7 @@ const {
     <h2 id={id} class="cta__title">{title}</h2>
     <p class="cta__body"><slot /></p>
     <div class="cta__actions">
-      <Button href={buttonHref} size="lg">{buttonLabel}</Button>
+      <Button href={buttonHref} size="lg" blockMobile={tone === 'walnut'}>{buttonLabel}</Button>
       {showCall && <a class="cta__call" href={telHref()}>or call {site.phone}</a>}
     </div>
   </div>
@@ -123,6 +123,35 @@ const {
     }
     .cta--walnut .cta__actions {
       justify-content: center;
+    }
+  }
+
+  /* Mobile (HomeMobile) walnut band */
+  @media (max-width: 767.98px) {
+    .cta--walnut {
+      padding-block: 64px;
+    }
+    .cta--walnut .cta__inner {
+      gap: 16px;
+      align-items: stretch;
+    }
+    .cta--walnut .cta__title {
+      font-size: 32px;
+      line-height: 1.08;
+    }
+    .cta--walnut .cta__body {
+      max-width: none;
+      font-size: 17px;
+    }
+    .cta--walnut .cta__actions {
+      align-items: stretch;
+      gap: 0;
+      margin-top: 8px;
+    }
+    .cta--walnut .cta__call {
+      align-self: center;
+      padding: 8px;
+      font-size: 16px;
     }
   }
 </style>

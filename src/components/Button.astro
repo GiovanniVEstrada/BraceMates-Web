@@ -17,6 +17,8 @@ interface Props {
   size?: 'sm' | 'md' | 'lg';
   /** Full width. */
   block?: boolean;
+  /** Full width on mobile (<=767px) only; auto width on desktop. */
+  blockMobile?: boolean;
   icon?: IconName | false;
   iconPosition?: 'start' | 'end';
   type?: 'button' | 'submit' | 'reset';
@@ -29,6 +31,7 @@ const {
   variant = 'primary',
   size = 'md',
   block = false,
+  blockMobile = false,
   icon,
   iconPosition = 'end',
   type = 'button',
@@ -39,7 +42,7 @@ const {
 const resolvedIcon: IconName | false = icon === undefined ? (variant === 'primary' ? 'arrow-right' : false) : icon;
 const iconSize = variant === 'primary' ? 20 : 18;
 const iconStroke = resolvedIcon === 'arrow-right' ? 2.25 : 2;
-const classes = ['btn', `btn--${variant}`, `btn--${size}`, { 'btn--block': block }, className];
+const classes = ['btn', `btn--${variant}`, `btn--${size}`, { 'btn--block': block, 'btn--block-mobile': blockMobile }, className];
 ---
 
 {
@@ -96,6 +99,18 @@ const classes = ['btn', `btn--${variant}`, `btn--${size}`, { 'btn--block': block
   .btn--primary.btn--sm {
     min-height: 54px;
     padding: 12px 22px;
+  }
+  /* blockMobile: full width on mobile only */
+  @media (max-width: 767.98px) {
+    .btn--block-mobile {
+      display: flex;
+      width: 100%;
+      gap: 10px;
+    }
+    .btn--primary.btn--block-mobile {
+      min-height: 56px;
+      padding: 14px 24px;
+    }
   }
   .btn--primary:hover {
     color: var(--espresso);

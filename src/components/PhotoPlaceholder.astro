@@ -141,8 +141,10 @@ const aria = label ?? `Photo placeholder: ${caption ?? title ?? 'photo'}`;
     inset: 0;
     color: var(--linen);
   }
+  /* z-index lifts the chip above a sibling page overlay (the hero is not its own stacking context). */
   .ph__chip {
     position: absolute;
+    z-index: 2;
     right: 24px;
     bottom: 24px;
     display: flex;
@@ -156,5 +158,17 @@ const aria = label ?? `Photo placeholder: ${caption ?? title ?? 'photo'}`;
     font-size: 13px;
     font-weight: 600;
     line-height: 1.4;
+  }
+  @media (max-width: 767.98px) {
+    .ph__chip {
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      max-width: none;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 14px;
+      font-size: 12px;
+    }
   }
 </style>

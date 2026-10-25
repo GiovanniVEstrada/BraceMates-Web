@@ -64,12 +64,12 @@ import { services, servicesCopy } from '../data/services';
           <h2 id="services-title">{servicesCopy.homePreview.title}</h2>
           <p>{servicesCopy.homePreview.intro}</p>
         </div>
-        <Button href="/services" variant="secondary" icon="arrow-right" class="services__all services__all--desk">See all services</Button>
+        <Button href="/services" variant="secondary" icon="arrow-right" class="services__all--desk">See all services</Button>
       </div>
       <div class="cards">
         {services.map((service) => <ServiceCardCompact service={service} />)}
       </div>
-      <Button href="/services" variant="secondary" size="lg" icon="arrow-right" class="services__all services__all--mob">See all services</Button>
+      <Button href="/services" variant="secondary" size="lg" icon="arrow-right" blockMobile class="services__all--mob">See all services</Button>
     </div>
   </section>
 
@@ -82,7 +82,7 @@ import { services, servicesCopy } from '../data/services';
       </div>
       <StepList />
       <div class="how__cta">
-        <Button href="/contact">Book a free consultation</Button>
+        <Button href="/contact" blockMobile>Book a free consultation</Button>
       </div>
     </div>
   </section>
@@ -108,11 +108,9 @@ import { services, servicesCopy } from '../data/services';
   </section>
 
   <!-- Final CTA -->
-  <div class="cta-wrap">
-    <CTABand tone="walnut" title="Ready for calmer walks and easier days?">
-      Book a free consultation. We’ll talk through what’s going on and what training could look like — no pressure, no obligation.
-    </CTABand>
-  </div>
+  <CTABand tone="walnut" title="Ready for calmer walks and easier days?">
+    Book a free consultation. We’ll talk through what’s going on and what training could look like — no pressure, no obligation.
+  </CTABand>
 </BaseLayout>
 
 <style>
@@ -137,18 +135,6 @@ import { services, servicesCopy } from '../data/services';
     position: absolute;
     inset: 0;
     background-color: var(--hero-overlay);
-  }
-  /* keep the caption chip above the overlay */
-  .hero :global(.ph__chip) {
-    z-index: 2;
-    left: 16px;
-    right: 16px;
-    bottom: 16px;
-    max-width: none;
-    gap: 8px;
-    padding: 8px 14px;
-    border-radius: 14px;
-    font-size: 12px;
   }
   .hero__inner {
     position: relative;
@@ -235,41 +221,10 @@ import { services, servicesCopy } from '../data/services';
     flex-direction: column;
     gap: 32px;
   }
-  .how :global(.steps) {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-  }
-  .how :global(.step) {
-    display: grid;
-    grid-template-columns: 52px minmax(0, 1fr);
-    gap: 4px 16px;
-    align-items: start;
-    padding-top: 0;
-    border-top: 0;
-  }
-  .how :global(.step__num) {
-    grid-row: span 2;
-    font-size: 52px;
-    line-height: 0.95;
-  }
-  .how :global(.step__title) {
-    font-size: 22px;
-    line-height: 1.25;
-  }
-  .how :global(.step p) {
-    font-size: 16px;
-  }
   .how__cta {
     display: flex;
     flex-direction: column;
   }
-  .how__cta :global(.btn) {
-    width: 100%;
-    gap: 10px;
-    padding: 14px 24px;
-  }
-
   /* ---------- Reviews: horizontal scroll-snap on mobile ---------- */
   .reviews {
     padding: 64px 0;
@@ -304,105 +259,10 @@ import { services, servicesCopy } from '../data/services';
     padding: 4px 20px 8px;
     scroll-padding-left: 20px;
   }
-  .reviews__list > :global(.t) {
-    flex: 0 0 300px;
-    scroll-snap-align: start;
-    gap: 14px;
-    padding: 24px;
-    border-radius: 18px;
-  }
-  .reviews__list :global(.t__mark) {
-    padding-top: 16px;
-    font-size: 56px;
-  }
-  .reviews__list :global(.t__quote) {
-    font-size: 17px;
-  }
-  .reviews__list :global(.t__cap) {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-    padding-top: 14px;
-  }
-  .reviews__list :global(.t__badge) {
-    align-self: flex-start;
-  }
   .reviews__swipe {
     padding: 0 20px;
     font-size: 14px;
     color: var(--text-muted);
-  }
-
-  /* ---------- Final CTA: mobile tweaks to match HomeMobile ---------- */
-  .cta-wrap :global(.cta.cta--walnut) {
-    padding-block: 64px;
-  }
-  .cta-wrap :global(.cta--walnut .cta__inner) {
-    gap: 16px;
-    align-items: stretch;
-  }
-  .cta-wrap :global(.cta--walnut .cta__title) {
-    font-size: 32px;
-    line-height: 1.08;
-  }
-  .cta-wrap :global(.cta--walnut .cta__body) {
-    font-size: 17px;
-    max-width: none;
-  }
-  .cta-wrap :global(.cta--walnut .cta__actions) {
-    align-items: stretch;
-    margin-top: 8px;
-    gap: 0;
-  }
-  .cta-wrap :global(.cta--walnut .cta__actions .btn) {
-    width: 100%;
-    min-height: 56px;
-    padding: 14px 24px;
-    gap: 10px;
-  }
-  .cta-wrap :global(.cta--walnut .cta__call) {
-    align-self: center;
-    padding: 8px;
-    font-size: 16px;
-  }
-
-  /* ---------- Mobile service cards (compact) ---------- */
-  @media (max-width: 767.98px) {
-    .cards :global(.card) {
-      gap: 10px;
-      min-height: 0;
-      padding: 22px;
-      border-radius: 18px;
-    }
-    .cards :global(.card__tag) {
-      padding: 4px 11px;
-      font-size: 12px;
-    }
-    .cards :global(.card__name) {
-      font-size: 22px;
-      letter-spacing: 0;
-    }
-    .cards :global(.card__summary) {
-      line-height: 1.5;
-    }
-    .cards :global(.card__foot) {
-      align-items: center;
-      margin-top: 4px;
-      padding-top: 12px;
-    }
-    .cards :global(.card__price) {
-      flex-direction: row;
-      align-items: baseline;
-      gap: 0.3em;
-      font-size: 14px;
-    }
-    .cards :global(.card__price strong) {
-      font-size: 18px;
-    }
-    .services__all--mob {
-      width: 100%;
-      gap: 10px;
-    }
   }
 
   /* ---------- Desktop ---------- */
@@ -416,16 +276,6 @@ import { services, servicesCopy } from '../data/services';
 
     .hero {
       min-height: 680px;
-    }
-    .hero :global(.ph__chip) {
-      left: auto;
-      right: 24px;
-      bottom: 24px;
-      max-width: calc(100% - 48px);
-      gap: 10px;
-      padding: 8px 16px;
-      border-radius: var(--radius-pill);
-      font-size: 13px;
     }
     .hero__inner {
       padding: 96px var(--gutter) 128px;
@@ -506,40 +356,12 @@ import { services, servicesCopy } from '../data/services';
       gap: 14px;
       max-width: 640px;
     }
-    .how :global(.steps) {
-      display: grid;
-    }
-    .how :global(.step) {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding-top: 20px;
-      border-top: 2px solid var(--walnut);
-    }
-    .how :global(.step__num) {
-      grid-row: auto;
-      font-size: 72px;
-      line-height: 1;
-    }
-    .how :global(.step__title) {
-      font-size: 26px;
-      line-height: 1.2;
-    }
-    .how :global(.step p) {
-      font-size: inherit;
-    }
     .how__cta {
       flex-direction: row;
       flex-wrap: wrap;
       align-items: center;
       gap: 16px 24px;
     }
-    .how__cta :global(.btn) {
-      width: auto;
-      gap: 12px;
-      padding: 16px 28px;
-    }
-
     .reviews {
       padding: 104px var(--gutter);
     }
@@ -570,62 +392,8 @@ import { services, servicesCopy } from '../data/services';
       overflow: visible;
       padding: 0;
     }
-    .reviews__list > :global(.t) {
-      flex: initial;
-      gap: 16px;
-      padding: 32px;
-      border-radius: var(--radius-card);
-    }
-    .reviews__list :global(.t__mark) {
-      padding-top: 18px;
-      font-size: 64px;
-    }
-    .reviews__list :global(.t__quote) {
-      font-size: 19px;
-    }
-    .reviews__list :global(.t__cap) {
-      flex-direction: row;
-      align-items: center;
-      gap: 12px;
-      padding-top: 16px;
-    }
-    .reviews__list :global(.t__badge) {
-      align-self: auto;
-    }
     .reviews__swipe {
       display: none;
-    }
-
-    .cta-wrap :global(.cta.cta--walnut) {
-      padding-block: 112px;
-    }
-    .cta-wrap :global(.cta--walnut .cta__inner) {
-      gap: 20px;
-      align-items: center;
-    }
-    .cta-wrap :global(.cta--walnut .cta__title) {
-      font-size: clamp(34px, 4vw, 54px);
-      line-height: 1.06;
-    }
-    .cta-wrap :global(.cta--walnut .cta__body) {
-      font-size: 19px;
-      max-width: 34em;
-    }
-    .cta-wrap :global(.cta--walnut .cta__actions) {
-      align-items: center;
-      margin-top: 12px;
-      gap: 16px 28px;
-    }
-    .cta-wrap :global(.cta--walnut .cta__actions .btn) {
-      width: auto;
-      min-height: 58px;
-      padding: 16px 30px;
-      gap: 12px;
-    }
-    .cta-wrap :global(.cta--walnut .cta__call) {
-      align-self: auto;
-      padding: 0;
-      font-size: 17px;
     }
   }
 </style>

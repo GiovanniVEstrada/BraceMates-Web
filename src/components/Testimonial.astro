@@ -83,4 +83,31 @@ const { quote, name, location, placeholder = true } = Astro.props;
     letter-spacing: 0.12em;
     text-transform: uppercase;
   }
+
+  /* Mobile (HomeMobile): 300px snap card, stacked caption */
+  @media (max-width: 767.98px) {
+    .t {
+      flex: 0 0 300px;
+      scroll-snap-align: start;
+      gap: 14px;
+      padding: 24px;
+      border-radius: 18px;
+    }
+    .t__mark {
+      padding-top: 16px;
+      font-size: 56px;
+    }
+    .t__quote {
+      font-size: 17px;
+    }
+    .t__cap {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+      padding-top: 14px;
+    }
+    .t__badge {
+      align-self: flex-start;
+    }
+  }
 </style>

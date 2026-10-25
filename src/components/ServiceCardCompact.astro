@@ -84,4 +84,39 @@ const { service, href = '/services' } = Astro.props;
   .card__link:hover {
     color: var(--linen-light);
   }
+
+  /* Mobile (HomeMobile): compact card, inline price */
+  @media (max-width: 767.98px) {
+    .card {
+      gap: 10px;
+      min-height: 0;
+      padding: 22px;
+      border-radius: 18px;
+    }
+    .card__tag {
+      padding: 4px 11px;
+      font-size: 12px;
+    }
+    .card__name {
+      font-size: 22px;
+      letter-spacing: 0;
+    }
+    .card__summary {
+      line-height: 1.5;
+    }
+    .card__foot {
+      align-items: center;
+      margin-top: 4px;
+      padding-top: 12px;
+    }
+    .card__price {
+      flex-direction: row;
+      align-items: baseline;
+      gap: 0.3em;
+      font-size: 14px;
+    }
+    .card__price strong {
+      font-size: 18px;
+    }
+  }
 </style>

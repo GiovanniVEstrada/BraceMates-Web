@@ -51,4 +51,33 @@ const { steps = howItWorks.steps } = Astro.props;
     font-size: 26px;
     line-height: 1.2;
   }
+
+  /* Mobile (HomeMobile): numeral column beside title and text, no top rule */
+  @media (max-width: 767.98px) {
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 52px minmax(0, 1fr);
+      gap: 4px 16px;
+      align-items: start;
+      padding-top: 0;
+      border-top: 0;
+    }
+    .step__num {
+      grid-row: span 2;
+      font-size: 52px;
+      line-height: 0.95;
+    }
+    .step__title {
+      font-size: 22px;
+      line-height: 1.25;
+    }
+    .step p {
+      font-size: 16px;
+    }
+  }
 </style>
