@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
+import CTABand from '../components/CTABand.astro';
+import { site } from '../data/site';
+
+// Tile labels and spans are verbatim from reference/Gallery.dc.html.
+// When photos exist: put gallery-01.jpg ... gallery-12.jpg in src/assets/images/, import them,
+// add `src` + real `alt` here, and render <Image src={t.src} alt={t.alt} loading="lazy" /> in place of PhotoPlaceholder.
+type Tone = 'sage' | 'sand' | 'cream' | 'clay';
+const tiles: { n: string; tone: Tone; label: string; span?: 'big' | 'tall' | 'wide' }[] = [
+  { n: 'Gallery 01', tone: 'sage', label: 'Loose-leash walk down a neighborhood street', span: 'big' },
+  { n: '02', tone: 'cream', label: 'Puppy learning “sit”' },
+  { n: '03', tone: 'sand', label: 'High-five trick' },
+  { n: '04', tone: 'clay', label: 'Dog settled on a mat at home (tall)', span: 'tall' },
+  { n: '05', tone: 'sage', label: 'Treat hand-off, close-up' },
+  { n: '06', tone: 'sand', label: 'Happy owner and dog' },
+  { n: '07', tone: 'cream', label: 'Calm walk past another dog — wide shot', span: 'wide' },
+  { n: '08', tone: 'clay', label: 'Recall at the park' },
+  { n: '09', tone: 'sand', label: 'Puppy portrait (tall)', span: 'tall' },
+  { n: '10', tone: 'sage', label: 'Polite greeting at the door' },
+  { n: '11', tone: 'cream', label: 'Training gear: leash, treat pouch, mat' },
+  { n: '12', tone: 'clay', label: 'Resting after a good session' },
+];
+---
+
+<BaseLayout
+  title="Gallery | Brace Mates Dog Training"
+  description={`Snapshots from in-home dog training sessions around ${site.city}.`}
+>
+  <section class="section intro" aria-labelledby="gallery-title">
+    <div class="container intro__inner">
+      <Eyebrow>Gallery</Eyebrow>
+      <h1 id="gallery-title">Good dogs, real progress</h1>
+      <p>Snapshots from training sessions around {site.city}.</p>
+    </div>
+  </section>
+
+  <div class="grid-wrap">
+    <ul class="container grid" aria-label="Photo gallery placeholders">
+      {
+        tiles.map((t) => (
+          <li class:list={['tile', t.span && `tile--${t.span}`]}>
+            <PhotoPlaceholder
+              tone={t.tone}
+              variant={t.span === 'big' ? 'tile' : 'tile-sm'}
+              title={t.n}
+              caption={t.label}
+              label={`Photo placeholder: ${t.label}`}
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <CTABand title="Want your dog in here?" tone="walnut" showCall={false}>
+    Every one of these started with a free call. Yours can too.
+  </CTABand>
+</BaseLayout>
+
+<style>
+  .intro {
+    padding-top: 48px;
+    padding-bottom: 28px;
+  }
+  .intro__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .grid-wrap {
+    padding: 0 var(--gutter) 56px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 160px;
+    grid-auto-flow: dense;
+    gap: 10px;
+  }
+  .tile {
+    min-width: 0;
+  }
+  .tile--big {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  .tile--tall {
+    grid-row: span 2;
+  }
+  .tile--wide {
+    grid-column: span 2;
+  }
+
+  @media (min-width: 768px) {
+    .intro {
+      padding-top: 88px;
+      padding-bottom: 48px;
+    }
+    .grid-wrap {
+      padding-bottom: 104px;
+    }
+    .grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-auto-rows: 220px;
+      gap: 16px;
+    }
+  }
+</style>

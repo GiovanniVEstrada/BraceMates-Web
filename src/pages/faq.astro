@@ -1,0 +1,178 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import Button from '../components/Button.astro';
+import Icon from '../components/Icon.astro';
+import { faqGroups, faqCopy, faqJsonLd } from '../data/faq';
+import { site, telHref, mailHref } from '../data/site';
+---
+
+<BaseLayout
+  title="FAQ | Brace Mates Dog Training"
+  description="Answers to common questions about training methods, session length, what to expect at the first visit, and ages and breeds."
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqJsonLd())} />
+
+  <section class="section intro" aria-labelledby="faq-title">
+    <div class="narrow intro__inner">
+      <Eyebrow>{faqCopy.eyebrow}</Eyebrow>
+      <h1 id="faq-title">{faqCopy.title}</h1>
+      <p>{faqCopy.intro}</p>
+    </div>
+  </section>
+
+  <div class="groups-wrap">
+    <div class="narrow groups">
+      {
+        faqGroups.map((group) => (
+          <section aria-labelledby={`g-${group.id}`} class="group">
+            <h2 id={`g-${group.id}`}>{group.title}</h2>
+            {group.items.map((item) => (
+              <details class="qa" open={item.open}>
+                <summary>
+                  <span class="qa__q">{item.q}</span>
+                  <span class="qa__toggle" aria-hidden="true">
+                    <Icon name="plus" size={16} strokeWidth={2.5} class="qa__plus" />
+                    <Icon name="minus" size={16} strokeWidth={2.5} class="qa__minus" />
+                  </span>
+                </summary>
+                <p class="qa__a">{item.a}</p>
+              </details>
+            ))}
+          </section>
+        ))
+      }
+    </div>
+  </div>
+
+  <section class="section band-dark ask" aria-labelledby="ask-title">
+    <div class="narrow ask__inner">
+      <h2 id="ask-title">{faqCopy.ask.title}</h2>
+      <p>{faqCopy.ask.body}</p>
+      <div class="ask__actions">
+        <Button href={telHref()} size="sm" icon={false}>Call {site.phone}</Button>
+        <Button href={mailHref()} variant="secondary" size="lg">Email {site.email}</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .narrow {
+    width: 100%;
+    max-width: 760px;
+    margin-inline: auto;
+  }
+  .intro {
+    padding-top: 48px;
+    padding-bottom: 24px;
+  }
+  .intro__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .groups-wrap {
+    padding: 0 var(--gutter) 56px;
+  }
+  .groups {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+  .group > h2 {
+    margin-bottom: 4px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--walnut);
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  .qa {
+    border-bottom: 1px solid var(--border-section);
+  }
+  .qa summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 60px;
+    padding: 14px 0;
+    list-style: none;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--espresso);
+  }
+  .qa summary::-webkit-details-marker {
+    display: none;
+  }
+  .qa__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-pill);
+    background: var(--od-green);
+    color: var(--linen-light);
+  }
+  .qa__toggle :global(.qa__minus),
+  .qa[open] .qa__toggle :global(.qa__plus) {
+    display: none;
+  }
+  .qa[open] .qa__toggle :global(.qa__minus) {
+    display: block;
+  }
+  .qa__a {
+    padding: 0 44px 18px 0;
+    font-size: 16px;
+  }
+
+  .ask__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .ask__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 6px;
+  }
+
+  @media (min-width: 768px) {
+    .intro {
+      padding-top: 88px;
+      padding-bottom: 48px;
+    }
+    .groups-wrap {
+      padding-bottom: 104px;
+    }
+    .groups {
+      gap: 56px;
+    }
+    .group > h2 {
+      font-size: 26px;
+    }
+    .qa summary {
+      font-size: 19px;
+      min-height: 68px;
+    }
+    .qa__a {
+      font-size: 17px;
+    }
+    .ask {
+      padding-block: 80px;
+    }
+    .ask__actions {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+    }
+  }
+</style>

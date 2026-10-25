@@ -1,0 +1,290 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
+import CTABand from '../components/CTABand.astro';
+import Icon from '../components/Icon.astro';
+import { site, about } from '../data/site';
+
+const s = about.storyPlaceholders;
+
+// Page-specific copy, verbatim from reference/About.dc.html.
+const principles = [
+  {
+    title: 'Behavior is communication',
+    body: 'Barking, pulling and jumping all mean something. We figure out the why first, so the fix actually sticks.',
+  },
+  {
+    title: 'Teach, don’t punish',
+    body: `I use reward-based methods ${site.methodConfirm} to show your dog what to do instead. It’s kinder, and it builds trust between you.`,
+  },
+  {
+    title: 'You’re half the team',
+    body: 'I coach you as much as your dog, with skills that fit your real routine — so progress keeps going between visits.',
+  },
+  {
+    title: 'Real life, real places',
+    body: 'We train in your home and on your streets — where the problems actually happen.',
+  },
+];
+---
+
+<BaseLayout
+  title="About Lance | Brace Mates Dog Training"
+  description="Meet Lance, the in-home dog trainer behind Brace Mates. Reward-based, practical training that helps dogs and their people feel calmer and more connected."
+>
+  <div class="intro-wrap section">
+    <div class="container intro-grid">
+      <section class="intro" aria-labelledby="about-title">
+        <Eyebrow>About</Eyebrow>
+        <h1 id="about-title">Hi, I’m Lance.</h1>
+        <p class="lede">
+          I help dogs and their people feel calmer, more confident and more connected — one practical step at a time.
+        </p>
+      </section>
+
+      <div class="portrait">
+        <!-- Swap for astro:assets <Image src={aboutPhoto} alt="..." /> once about.jpg exists. -->
+        <PhotoPlaceholder
+          tone="sage"
+          variant="center"
+          title="About photo"
+          caption="Lance with a dog, natural light, portrait (4:5)"
+          label="Photo placeholder: Lance with a dog"
+        />
+      </div>
+
+      <section class="story" aria-labelledby="story-title">
+        <h2 id="story-title">How I got here</h2>
+        <p>
+          Like a lot of trainers, I got into this because of one dog. {s.dogName} was {s.dogDescription}, and I tried
+          everything — most of it didn’t work. What finally did was learning how dogs actually learn, and meeting them
+          where they were.
+        </p>
+        <p>
+          Since then I’ve {s.experience} across {site.city}. {s.background}
+        </p>
+        <p>
+          These days, my favorite part of the job is the moment someone tells me a walk felt easy. That’s what I’m here
+          for.
+        </p>
+      </section>
+    </div>
+  </div>
+
+  <section class="section band-dark" aria-labelledby="philosophy-title">
+    <div class="container stack">
+      <div class="head">
+        <Eyebrow>Training philosophy</Eyebrow>
+        <h2 id="philosophy-title">How I train</h2>
+      </div>
+      <ul class="principles">
+        {
+          principles.map((p) => (
+            <li>
+              <h3>{p.title}</h3>
+              <p>{p.body}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="creds-title">
+    <div class="container stack">
+      <div class="head">
+        <Eyebrow>Certifications</Eyebrow>
+        <h2 id="creds-title">Training &amp; credentials</h2>
+        <p>Anyone can call themselves a dog trainer, so it’s fair to ask. Here’s what I bring:</p>
+      </div>
+      <ul class="creds">
+        {
+          about.credentials.map((c) => (
+            <li>
+              <span class="creds__check" aria-hidden="true">
+                <Icon name="check" size={16} strokeWidth={2.5} />
+              </span>
+              <span class="creds__text">
+                <strong>{c.name}</strong>
+                <span>{c.detail}</span>
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <CTABand title="Want to see if we’re a good fit?" tone="walnut" showCall={false}>
+    The first call is free, and there’s no obligation. Tell me about your dog and we’ll go from there.
+  </CTABand>
+</BaseLayout>
+
+<style>
+  .intro-wrap {
+    padding-top: 48px;
+    padding-bottom: 56px;
+  }
+  .intro-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+  .intro {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .intro h1 {
+    font-size: 42px;
+    line-height: 1.04;
+  }
+  .lede {
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--walnut);
+  }
+  .portrait {
+    margin-bottom: 20px;
+  }
+  .portrait :global(.ph) {
+    height: 438px;
+  }
+  .story {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .head {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .principles {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  .principles li {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-top: 16px;
+    border-top: 2px solid var(--walnut);
+  }
+  .principles h3 {
+    font-size: 21px;
+    line-height: 1.25;
+  }
+  .principles p {
+    font-size: 16px;
+  }
+
+  .creds {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+  .creds li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card-sm);
+    background: var(--linen-light);
+  }
+  .creds__check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-pill);
+    background: var(--od-green);
+    color: var(--linen-light);
+  }
+  .creds__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.4;
+  }
+  .creds__text strong {
+    color: var(--espresso);
+  }
+  .creds__text span {
+    font-size: 15px;
+    color: var(--text-muted);
+  }
+
+  @media (min-width: 768px) {
+    .intro-wrap {
+      padding-top: 88px;
+      padding-bottom: 104px;
+    }
+    .intro-grid {
+      grid-template-columns: minmax(0, 45fr) minmax(0, 55fr);
+      grid-template-areas:
+        'photo intro'
+        'photo story';
+      grid-template-rows: auto 1fr;
+      column-gap: 72px;
+      row-gap: 32px;
+      align-items: start;
+    }
+    .portrait {
+      grid-area: photo;
+      margin-bottom: 0;
+      aspect-ratio: 4 / 5;
+    }
+    .portrait :global(.ph) {
+      height: 100%;
+    }
+    .intro {
+      grid-area: intro;
+      align-self: end;
+    }
+    .story {
+      grid-area: story;
+      gap: 18px;
+    }
+    .intro h1 {
+      font-size: 56px;
+    }
+    .lede {
+      font-size: 21px;
+    }
+    .stack {
+      gap: 48px;
+    }
+    .head {
+      max-width: 640px;
+    }
+    .principles {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 40px 56px;
+    }
+    .principles h3 {
+      font-size: 24px;
+    }
+    .principles p {
+      font-size: 17px;
+    }
+    .creds {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .creds li {
+      padding: 20px;
+    }
+  }
+</style>

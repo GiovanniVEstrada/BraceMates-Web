@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import CTABand from '../components/CTABand.astro';
+import { services, servicesCopy } from '../data/services';
+---
+
+<BaseLayout
+  title="Dog Training Services | Brace Mates Dog Training"
+  description="In-home dog training for puppies, manners and leash skills, reactivity, and anxiety. Every plan starts with a free call."
+>
+  <section class="section intro" aria-labelledby="services-title">
+    <div class="container intro__inner">
+      <Eyebrow>{servicesCopy.eyebrow}</Eyebrow>
+      <h1 id="services-title">{servicesCopy.title}</h1>
+      <p>{servicesCopy.intro}</p>
+    </div>
+  </section>
+
+  <div class="cards-wrap">
+    <div class="container cards">
+      {services.map((service) => <ServiceCard service={service} />)}
+    </div>
+  </div>
+
+  <CTABand id="fit-title" tone="light" title={servicesCopy.fit.title}>
+    {servicesCopy.fit.body}
+  </CTABand>
+</BaseLayout>
+
+<style>
+  .intro {
+    padding-top: 48px;
+    padding-bottom: 32px;
+  }
+  .intro__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .intro__inner p:last-child {
+    max-width: 44em;
+  }
+  .cards-wrap {
+    padding: 0 var(--gutter) 56px;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .intro {
+      padding-top: 88px;
+      padding-bottom: 56px;
+    }
+    .cards-wrap {
+      padding-bottom: 104px;
+    }
+    .cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
+    }
+    .cards :global(.card) {
+      padding: 32px;
+    }
+  }
+</style>
