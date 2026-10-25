@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Brace Mates — About (mobile)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;family=Figtree:wght@400..700&amp;display=swap">
+<style>
+body{margin:0;background:#211D18}
+*,*::before,*::after{box-sizing:border-box}
+a{color:#596044}a:hover{color:#3C3327}
+:focus-visible{outline:3px solid #B56D43;outline-offset:3px}
+</style>
+</helmet>
+<div style="width: 390px; min-height: 4100px; display: flex; flex-direction: column; font-family: 'Figtree', 'Helvetica Neue', Arial, sans-serif; font-size: 17px; line-height: 1.6; color: #463C30; background: #EFE3D0">
+
+<header style="background: #3C3327; color: #EFE3D0">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 64px; padding: 8px 10px 8px 20px">
+<a href="HomeMobile.dc.html" style="display: flex; flex-direction: column; gap: 4px; padding: 6px 0; text-decoration: none; color: #F7F0E6">
+<span style="font-family: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', sans-serif; font-size: 23px; font-weight: 800; line-height: 1; letter-spacing: -0.02em">Brace Mates</span>
+<span style="font-size: 10px; font-weight: 700; line-height: 1; letter-spacing: 0.26em; text-transform: uppercase; color: #CDBFA8">Dog Training</span>
+</a>
+<div style="display: flex; align-items: center; gap: 4px">
+<a href="tel:[PHONE]" aria-label="Call [PHONE]" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 999px; color: #F7F0E6">
+<svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.070-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+</a>
+<button type="button" onClick="{{toggleMenu}}" aria-expanded="{{menuExpanded}}" aria-label="{{menuLabel}}" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 999px; background: transparent; color: #F7F0E6; cursor: pointer">
+<sc-if value="{{menuClosed}}" hint-placeholder-val="{{ true }}">
+<svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round"><line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="20" y2="17"></line></svg>
+</sc-if>
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}">
+<svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg>
+</sc-if>
+</button>
+</div>
+</div>
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}">
+<nav aria-label="Main" style="display: flex; flex-direction: column; gap: 2px; padding: 8px 12px 20px; border-top: 1px solid rgba(239, 227, 208, 0.15)">
+<a href="HomeMobile.dc.html" style="display: flex; align-items: center; min-height: 48px; padding: 0 12px; border-radius: 12px; color: #EFE3D0; font-size: 18px; font-weight: 600; text-decoration: none">Home</a>
+<a href="About.dc.html" aria-current="page" style="display: flex; align-items: center; min-height: 48px; padding: 0 12px; border-radius: 12px; background: rgba(247, 240, 230, 0.14); color: #F7F0E6; font-size: 18px; font-weight: 700; text-decoration: none">About</a>
+<a href="Services.dc.html" style="display: flex; align-items: center; min-height: 48px; padding: 0 12px; border-radius: 12px; color: #EFE3D0; font-size: 18px; font-weight: 600; text-decoration: none">Services</a>
+<a href="Gallery.dc.html" style="display: flex; align-items: center; min-height: 48px; padding: 0 12px; border-radius: 12px; color: #EFE3D0; font-size: 18px; font-weight: 600; text-decoration: none">Gallery</a>
+<a href="FAQ.dc.html" style="display: flex; align-items: center; min-height: 48px; padding: 0 12px; border-radius: 12px; color: #EFE3D0; font-size: 18px; font-weight: 600; text-decoration: none">FAQ</a>
+<a href="Contact.dc.html" style="display: flex; align-items: center; min-height: 48px; padding: 0 12px; border-radius: 12px; color: #EFE3D0; font-size: 18px; font-weight: 600; text-decoration: none">Contact</a>
+<a href="tel:[PHONE]" style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; margin-top: 10px; border: 1.5px solid rgba(205, 191, 168, 0.6); border-radius: 999px; color: #F7F0E6; font-size: 17px; font-weight: 700; text-decoration: none">Call [PHONE]</a>
+</nav>
+</sc-if>
+</header>
+
+<main>
+
+<section aria-labelledby="about-title" style="display: flex; flex-direction: column; gap: 14px; padding: 48px 20px 28px">
+<p style="margin: 0; font-size: 12px; font-weight: 700; line-height: 1.4; letter-spacing: 0.18em; text-transform: uppercase; color: #65523A">About</p>
+<h1 id="about-title" style="margin: 0; font-family: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', sans-serif; font-size: 42px; font-weight: 800; line-height: 1.04; letter-spacing: -0.025em; color: #3C3327">Hi, I’m Lance.</h1>
+<p style="margin: 0; font-size: 19px; line-height: 1.55; color: #3C3327; text-wrap: pretty">I help dogs and their people feel calmer, more confident and more connected — one practical step at a time.</p>
+</section>
+
+<div style="padding: 0 20px 48px">
+<div role="img" aria-label="Photo placeholder: Lance with a dog" style="height: 438px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 24px; border-radius: 20px; background-color: #B3B297; background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0 2px, transparent 2px 20px); color: #211D18; text-align: center">
+<svg aria-hidden="true" viewBox="0 0 24 24" width="32" height="32" style="fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+<span style="font-size: 13px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase">About photo</span>
+<span style="max-width: 24ch; font-size: 15px; line-height: 1.45">Lance with a dog, natural light, portrait (4:5)</span>
+</div>
+</div>
+
+<section aria-labelledby="story-title" style="display: flex; flex-direction: column; gap: 16px; padding: 0 20px 56px">
+<h2 id="story-title" style="margin: 0; font-family: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', sans-serif; font-size: 30px; font-weight: 700; line-height: 1.12; letter-spacing: -0.02em; color: #3C3327">How I got here</h2>
+<p style="margin: 0; text-wrap: pretty">Like a lot of trainers, I got into this because of one dog. [Dog’s name] was [a nervous rescue who barked at everything that moved], and I tried everything — most of it didn’t work. What finally did was learning how dogs actually learn, and meeting them where they were.</p>
+<p style="margin: 0; text-wrap: pretty">Since then I’ve [trained dogs for X years / worked with X+ families] across [CITY / AREA]. [Add any relevant background — shelter work, fostering, an apprenticeship, a past career that shapes how you teach.]</p>
+<p style="margin: 0; text-wrap: pretty">These days, my favorite part of the job is the moment someone tells me a walk felt easy. That’s what I’m here for.</p>
+</section>
+
+<section aria-labelledby="philosophy-title" style="display: flex; flex-direction: column; gap: 28px; padding: 56px 20px; background: #E0D6C2">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font-size: 12px; font-weight: 700; line-height: 1.4; letter-spacing: 0.18em; text-transform: uppercase; color: #65523A">Training philosophy</p>
+<h2 id="philosophy-title" style="margin: 0; font-family: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', sans-serif; font-size: 30px; font-weight: 700; line-height: 1.12; letter-spacing: -0.02em; color: #3C3327">How I train</h2>
+</div>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 24px">
+<li style="display: flex; flex-direction: column; gap: 6px; padding-top: 16px; border-top: 2px solid #3C3327">
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', sans-serif; font-size: 21px; font-weight: 700; line-height: 1.25; color: #3C3327">Behavior is communication</h3>
+<p style="margin: 0; font-size: 16px; text-wrap: pretty">Barking, pulling and jumping all mean something. We figure out the why first, so the fix actually sticks.</p>
+</li>
+<li style="display: flex; flex-direction: column; gap: 6px; padding-top: 16px; border-top: 2px solid #3C3327">
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', sans-serif; font-size: 21px; font-weight: 700; line-height: 1.25; color: #3C3327">Teach, don’t punish</h3>
+<p style="margin: 0; font-size: 16px; text-wrap: pretty">I use reward-based methods [confirm] to show your dog what to do instead. It’s kinder, and it builds trust between you.</p>
+</li>
+<li style="display: flex; flex-direction: column; gap: 6px; padding-top: 16px; border-top: 2px solid #3C3327">
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', sans-serif; font-size: 21px; font-weight: 700; line-height: 1.25; color: #3C3327">You’re half the team</h3>
+<p style="margin: 0; font-size: 16px; text-wrap: pretty">I coach you as much as your dog, with skills that fit your real routine — so progress keeps going between visits.</p>
+</li>
+<li style="display: flex; flex-direction: column; gap: 6px; padding-top: 16px; border-top: 2px solid #3C3327">
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', sans-serif; font-size: 21px; font-weight: 700; line-height: 1.25; color: #3C3327">Real life, real places</h3>
+<p style="margin: 0; font-size: 16px; text-wrap: pretty">We train in your home and on your streets — where the problems actually happen.</p>
+</li>
+</ul>
+</section>
+
+<section aria-labelledby="creds-title" style="display: flex; flex-direction: column; gap: 16px; padding: 56px 20px">
+<p style="margin: 0; font-size: 12px; font-weight: 700; line-height: 1.4; letter-spacing: 0.18em; text-transform: uppercase; color: #65523A">Certifications</p>
+<h2 id="creds-title" style="margin: 0; font-family: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', sans-serif; font-size: 30px; font-weight: 700; line-height: 1.12; letter-spacing: -0.02em; color: #3C3327">Training &amp; credentials</h2>
+<p style="margin: 0; text-wrap: pretty">Anyone can call themselves a dog trainer, so it’s fair to ask. Here’s what I bring:</p>
+<ul style="margin: 8px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px">
+<li style="display: flex; align-items: flex-start; gap: 14px; padding: 16px; border: 1px solid rgba(60, 51, 39, 0.15); border-radius: 14px; background: #F7F0E6">
+<span aria-hidden="true" style="display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 32px; height: 32px; border-radius: 999px; background: #596044; color: #F7F0E6"><svg viewBox="0 0 24 24" width="16" height="16" style="fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+<span style="display: flex; flex-direction: column; line-height: 1.4"><strong style="color: #211D18">[Certification — e.g., CPDT-KA]</strong><span style="font-size: 15px; color: #635545">[Issuing organization, year]</span></span>
+</li>
+<li style="display: flex; align-items: flex-start; gap: 14px; padding: 16px; border: 1px solid rgba(60, 51, 39, 0.15); border-radius: 14px; background: #F7F0E6">
+<span aria-hidden="true" style="display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 32px; height: 32px; border-radius: 999px; background: #596044; color: #F7F0E6"><svg viewBox="0 0 24 24" width="16" height="16" style="fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+<span style="display: flex; flex-direction: column; line-height: 1.4"><strong style="color: #211D18">[Second certification or course]</strong><span style="font-size: 15px; color: #635545">[Issuing organization, year]</span></span>
+</li>
+<li style="display: flex; align-items: flex-start; gap: 14px; padding: 16px; border: 1px solid rgba(60, 51, 39, 0.15); border-radius: 14px; background: #F7F0E6">
+<span aria-hidden="true" style="display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 32px; height: 32px; border-radius: 999px; background: #596044; color: #F7F0E6"><svg viewBox="0 0 24 24" width="16" height="16" style="fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+<span style="display: flex; flex-direction: column; line-height: 1.4"><strong style="color: #211D18">[Pet first aid &amp; CPR]</strong><span style="font-size: 15px; color: #635545">[Provider, year]</span></span>
+</li>
+<li style="display: flex; align-items: flex-start; gap: 14px; padding: 16px; border: 1px solid rgba(60, 51, 39, 0.15); border-radius: 14px; background: #F7F0E6">
+<span aria-hidden="true" style="display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 32px; height: 32px; border-radius: 999px; background: #596044; color: #F7F0E6"><svg viewBox="0 0 24 24" width="16" height="16" style="fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+<span style="display: flex; flex-direction: column; line-height: 1.4"><strong style="color: #211D18">[Insured]</strong><span style="font-size: 15px; color: #635545">[Insurance provider]</span></span>
+</li>
+</ul>
+</section>
+
+<section aria-labelledby="cta-title" style="display: flex; flex-direction: column; align-items: stretch; gap: 16px; padding: 64px 20px; background: #3C3327; color: #EFE3D0; text-align: center">
+<h2 id="cta-title" style="margin: 0; font-family: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', sans-serif; font-size: 32px; font-weight: 800; line-height: 1.08; letter-spacing: -0.02em; color: #FFFFFF; text-wrap: balance">Want to see if we’re a good fit?</h2>
+<p style="margin: 0; font-size: 17px; color: #EFE3D0; text-wrap: pretty">The first call is free, and there’s no obligation. Tell me about your dog and we’ll go from there.</p>
+<a href="Contact.dc.html" style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; margin-top: 8px; padding: 14px 24px; border-radius: 999px; background: #B56D43; color: #211D18; font-size: 19px; font-weight: 700; line-height: 1.2; text-decoration: none">
+<span>Book a free consultation</span>
+<svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" style="fill: none; stroke: currentColor; stroke-width: 2.25; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+</a>
+</section>
+
+</main>
+
+<footer style="flex: 1 0 auto; display: flex; flex-direction: column; gap: 32px; padding: 48px 20px 32px; background: #211D18; color: #EFE3D0">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<a href="HomeMobile.dc.html" style="display: flex; flex-direction: column; gap: 4px; align-self: flex-start; text-decoration: none; color: #F7F0E6">
+<span style="font-family: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', sans-serif; font-size: 24px; font-weight: 800; line-height: 1; letter-spacing: -0.02em">Brace Mates</span>
+<span style="font-size: 10px; font-weight: 700; line-height: 1; letter-spacing: 0.26em; text-transform: uppercase; color: #CDBFA8">Dog Training</span>
+</a>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #CDBFA8">In-home dog training in [CITY / AREA]. Practical help for you and your dog, together.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #CDBFA8">Contact</h2>
+<a href="tel:[PHONE]" style="display: flex; align-items: center; min-height: 44px; color: #F7F0E6; font-size: 16px; text-underline-offset: 4px">[PHONE]</a>
+<a href="mailto:[EMAIL]" style="display: flex; align-items: center; min-height: 44px; color: #F7F0E6; font-size: 16px; text-underline-offset: 4px">[EMAIL]</a>
+<p style="margin: 0; font-size: 16px; color: #EFE3D0">Serving [CITY / AREA] and nearby</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #CDBFA8">Explore</h2>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px">
+<a href="HomeMobile.dc.html" style="display: flex; align-items: center; min-height: 44px; color: #F7F0E6; font-size: 16px; text-decoration: none">Home</a>
+<a href="Services.dc.html" style="display: flex; align-items: center; min-height: 44px; color: #F7F0E6; font-size: 16px; text-decoration: none">Services</a>
+<a href="Gallery.dc.html" style="display: flex; align-items: center; min-height: 44px; color: #F7F0E6; font-size: 16px; text-decoration: none">Gallery</a>
+<a href="FAQ.dc.html" style="display: flex; align-items: center; min-height: 44px; color: #F7F0E6; font-size: 16px; text-decoration: none">FAQ</a>
+<a href="Contact.dc.html" style="display: flex; align-items: center; min-height: 44px; color: #F7F0E6; font-size: 16px; text-decoration: none">Contact</a>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #CDBFA8">Follow along</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<a href="https://example.com/instagram" style="display: inline-flex; align-items: center; min-height: 44px; padding: 8px 16px; border: 1px solid rgba(205, 191, 168, 0.45); border-radius: 999px; color: #F7F0E6; font-size: 15px; font-weight: 600; text-decoration: none">Instagram</a>
+<a href="https://example.com/facebook" style="display: inline-flex; align-items: center; min-height: 44px; padding: 8px 16px; border: 1px solid rgba(205, 191, 168, 0.45); border-radius: 999px; color: #F7F0E6; font-size: 15px; font-weight: 600; text-decoration: none">Facebook</a>
+<a href="https://example.com/google" style="display: inline-flex; align-items: center; min-height: 44px; padding: 8px 16px; border: 1px solid rgba(205, 191, 168, 0.45); border-radius: 999px; color: #F7F0E6; font-size: 15px; font-weight: 600; text-decoration: none">Google reviews</a>
+</div>
+</div>
+<p style="margin: 0; padding-top: 20px; border-top: 1px solid rgba(205, 191, 168, 0.2); font-size: 13px; color: #CDBFA8">© 2026 Brace Mates Dog Training</p>
+</footer>
+
+<div style="position: sticky; bottom: 0; z-index: 10; padding: 12px 16px 16px; background: rgba(239, 227, 208, 0.97); border-top: 1px solid rgba(60, 51, 39, 0.15); box-shadow: 0 -8px 24px rgba(33, 29, 24, 0.14)">
+<a href="Contact.dc.html" style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; border-radius: 999px; background: #B56D43; color: #211D18; font-size: 19px; font-weight: 700; text-decoration: none">
+<svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.910a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+<span>Book a free call</span>
+</a>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"menuOpen":{"editor":"boolean","default":false,"section":"Preview"},"$preview":{"width":390,"height":4100}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const open = s.menuOpen ?? (this.props.menuOpen ?? false);
+    return {
+      menuOpen: open,
+      menuClosed: !open,
+      menuExpanded: open ? 'true' : 'false',
+      menuLabel: open ? 'Close menu' : 'Open menu',
+      toggleMenu: () => this.setState({ menuOpen: !open })
+    };
+  }
+}
+</script>
+</body>
+</html>

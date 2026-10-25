@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Brace Mates — Contact (mobile)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;family=Figtree:wght@400..700&amp;display=swap">
+<style>
+body{margin:0;background:#211D18}
+*,*::before,*::after{box-sizing:border-box}
+a{color:#596044}a:hover{color:#3C3327}
+:focus-visible{outline:3px solid #B56D43;outline-offset:3px}
+::placeholder{color:#6B5D4C;opacity:1}
+</style>
+</helmet>
+<div style="width: 390px; min-height: 2700px; display: flex; flex-direction: column; font-family: 'Figtree', 'Helvetica Neue', Arial, sans-serif; font-size: 17px; line-height: 1.6; color: #463C30; background: #EFE3D0">
+
+<header style="background: #3C3327; color: #EFE3D0">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 64px; padding: 8px 10px 8px 20px">
+<a href="HomeMobile.dc.html" style="display: flex; flex-direction: column; gap: 4px; padding: 6px 0; text-decoration: none; color: #F7F0E6">
+<span style="font-family: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', sans-serif; font-size: 23px; font-weight: 800; line-height: 1; letter-spacing: -0.02em">Brace Mates</span>
+<span style="font-size: 10px; font-weight: 700; line-height: 1; letter-spacing: 0.26em; text-transform: uppercase; color: #CDBFA8">Dog Training</span>
+</a>
+<div style="display: flex; align-items: center; gap: 4px">
+<a href="tel:[PHONE]" aria-label="Call [PHONE]" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 999px; color: #F7F0E6">
+<svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+</a>
+<button type="button" onClick="{{toggleMenu}}" aria-expanded="{{menuExpanded}}" aria-label="{{menuLabel}}" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 999px; background: transparent; color: #F7F0E6; cursor: pointer">
+<sc-if value="{{menuClosed}}" hint-placeholder-val="{{ true }}">
+<svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round"><line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="20" y2="17"></line></svg>
+</sc-if>
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}">
+<svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg>
+</sc-if>
+</button>
+</div>
+</div>
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}">
+<nav aria-label="Main" style="display: flex; flex-direction: column; gap: 2px; padding: 8px 12px 20px; border-top: 1px solid rgba(239, 227, 208, 0.15)">
+<a href="HomeMobile.dc.html" style="display: flex; align-items: center; min-height: 48px; padding: 0 12px; border-radius: 12px; color: #EFE3D0; font-size: 18px; font-weight: 600; text-decoration: none">Home</a>
+<a href="About.dc.html" style="display: flex; align-items: center; min-height: 48px; padding: 0 12px; border-radius: 12px; color: #EFE3D0; font-size: 18px; font-weight: 600; text-decoration: none">About</a>
+<a href="Services.dc.html" style="display: flex; align-items: center; min-height: 48px; padding: 0 12px; border-radius: 12px; color: #EFE3D0; font-size: 18px; font-weight: 600; text-decoration: none">Services</a>
+<a href="Gallery.dc.html" style="display: flex; align-items: center; min-height: 48px; padding: 0 12px; border-radius: 12px; color: #EFE3D0; font-size: 18px; font-weight: 600; text-decoration: none">Gallery</a>
+<a href="FAQ.dc.html" style="display: flex; align-items: center; min-height: 48px; padding: 0 12px; border-radius: 12px; color: #EFE3D0; font-size: 18px; font-weight: 600; text-decoration: none">FAQ</a>
+<a href="Contact.dc.html" aria-current="page" style="display: flex; align-items: center; min-height: 48px; padding: 0 12px; border-radius: 12px; background: rgba(247, 240, 230, 0.14); color: #F7F0E6; font-size: 18px; font-weight: 700; text-decoration: none">Contact</a>
+<a href="tel:[PHONE]" style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; margin-top: 10px; border: 1.5px solid rgba(205, 191, 168, 0.6); border-radius: 999px; color: #F7F0E6; font-size: 17px; font-weight: 700; text-decoration: none">Call [PHONE]</a>
+</nav>
+</sc-if>
+</header>
+
+<main>
+
+<section aria-labelledby="contact-title" style="display: flex; flex-direction: column; gap: 14px; padding: 48px 20px 24px">
+<p style="margin: 0; font-size: 12px; font-weight: 700; line-height: 1.4; letter-spacing: 0.18em; text-transform: uppercase; color: #65523A">Contact</p>
+<h1 id="contact-title" style="margin: 0; font-family: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', sans-serif; font-size: 40px; font-weight: 800; line-height: 1.05; letter-spacing: -0.025em; color: #3C3327; text-wrap: balance">Let’s talk about your dog</h1>
+<p style="margin: 0; text-wrap: pretty">Tell me a little about what’s going on. I’ll get back to you within [1 business day] to set up your free call.</p>
+</section>
+
+<ul aria-label="Ways to reach me" style="margin: 0; padding: 0 20px 32px; list-style: none; display: flex; flex-direction: column; gap: 10px">
+<li>
+<a href="tel:[PHONE]" style="display: flex; align-items: center; gap: 14px; min-height: 64px; padding: 12px 16px; border: 1px solid rgba(60, 51, 39, 0.15); border-radius: 14px; background: #F7F0E6; color: #211D18; text-decoration: none">
+<span aria-hidden="true" style="display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 40px; height: 40px; border-radius: 999px; background: #596044; color: #F7F0E6"><svg viewBox="0 0 24 24" width="18" height="18" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></span>
+<span style="display: flex; flex-direction: column; line-height: 1.35"><span style="font-size: 13px; color: #635545">Call or text</span><strong style="font-size: 17px">[PHONE]</strong></span>
+</a>
+</li>
+<li>
+<a href="mailto:[EMAIL]" style="display: flex; align-items: center; gap: 14px; min-height: 64px; padding: 12px 16px; border: 1px solid rgba(60, 51, 39, 0.15); border-radius: 14px; background: #F7F0E6; color: #211D18; text-decoration: none">
+<span aria-hidden="true" style="display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 40px; height: 40px; border-radius: 999px; background: #596044; color: #F7F0E6"><svg viewBox="0 0 24 24" width="18" height="18" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><polyline points="22 6 12 13 2 6"></polyline></svg></span>
+<span style="display: flex; flex-direction: column; line-height: 1.35"><span style="font-size: 13px; color: #635545">Email</span><strong style="font-size: 17px">[EMAIL]</strong></span>
+</a>
+</li>
+<li style="display: flex; align-items: center; gap: 14px; min-height: 64px; padding: 12px 16px; border: 1px solid rgba(60, 51, 39, 0.15); border-radius: 14px; background: #F7F0E6; color: #211D18">
+<span aria-hidden="true" style="display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 40px; height: 40px; border-radius: 999px; background: #596044; color: #F7F0E6"><svg viewBox="0 0 24 24" width="18" height="18" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></span>
+<span style="display: flex; flex-direction: column; line-height: 1.35"><span style="font-size: 13px; color: #635545">Service area</span><strong style="font-size: 17px">[CITY / AREA] and nearby</strong></span>
+</li>
+</ul>
+
+<section id="contact-form" aria-labelledby="form-title" style="padding: 0 20px 48px">
+<div style="display: flex; flex-direction: column; gap: 20px; padding: 24px 20px; border-radius: 20px; background: #F7F0E6; box-shadow: 0 1px 2px rgba(33, 29, 24, 0.06), 0 8px 24px rgba(33, 29, 24, 0.06)">
+<h2 id="form-title" style="margin: 0; font-family: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', sans-serif; font-size: 26px; font-weight: 700; line-height: 1.15; color: #3C3327">Tell me about your dog</h2>
+
+<sc-if value="{{notSent}}" hint-placeholder-val="{{ true }}">
+<form onSubmit="{{submit}}" style="display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="f-name" style="font-size: 15px; font-weight: 700; color: #211D18">Your name</label>
+<input id="f-name" name="name" type="text" style="width: 100%; min-height: 52px; padding: 12px 14px; border: 1.5px solid rgba(60, 51, 39, 0.35); border-radius: 12px; background: #FFFBF4; color: #211D18; font-family: inherit; font-size: 17px">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="f-email" style="font-size: 15px; font-weight: 700; color: #211D18">Email</label>
+<input id="f-email" name="email" type="email" style="width: 100%; min-height: 52px; padding: 12px 14px; border: 1.5px solid rgba(60, 51, 39, 0.35); border-radius: 12px; background: #FFFBF4; color: #211D18; font-family: inherit; font-size: 17px">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="f-phone" style="font-size: 15px; font-weight: 700; color: #211D18">Phone</label>
+<input id="f-phone" name="phone" type="tel" style="width: 100%; min-height: 52px; padding: 12px 14px; border: 1.5px solid rgba(60, 51, 39, 0.35); border-radius: 12px; background: #FFFBF4; color: #211D18; font-family: inherit; font-size: 17px">
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="f-dog" style="font-size: 15px; font-weight: 700; color: #211D18">Dog’s name</label>
+<input id="f-dog" name="dog_name" type="text" style="width: 100%; min-height: 52px; padding: 12px 14px; border: 1.5px solid rgba(60, 51, 39, 0.35); border-radius: 12px; background: #FFFBF4; color: #211D18; font-family: inherit; font-size: 17px">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="f-age" style="font-size: 15px; font-weight: 700; color: #211D18">Dog’s age</label>
+<input id="f-age" name="dog_age" type="text" placeholder="e.g. 2 years" style="width: 100%; min-height: 52px; padding: 12px 14px; border: 1.5px solid rgba(60, 51, 39, 0.35); border-radius: 12px; background: #FFFBF4; color: #211D18; font-family: inherit; font-size: 17px">
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="f-help" style="font-size: 15px; font-weight: 700; color: #211D18">What do you need help with?</label>
+<textarea id="f-help" name="help" rows="5" placeholder="e.g. pulls on the leash, barks at other dogs, nervous when left alone" style="width: 100%; min-height: 140px; padding: 12px 14px; border: 1.5px solid rgba(60, 51, 39, 0.35); border-radius: 12px; background: #FFFBF4; color: #211D18; font-family: inherit; font-size: 17px; line-height: 1.5; resize: vertical"></textarea>
+</div>
+<button type="submit" style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; margin-top: 4px; padding: 14px 24px; border: 0; border-radius: 999px; background: #B56D43; color: #211D18; font-family: inherit; font-size: 19px; font-weight: 700; cursor: pointer">
+<span>Send message</span>
+<svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" style="fill: none; stroke: currentColor; stroke-width: 2.25; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+</button>
+<p style="margin: 0; font-size: 15px; text-align: center; color: #635545">Prefer to talk? <a href="tel:[PHONE]" style="color: #596044; font-weight: 700; text-underline-offset: 3px">Call [PHONE]</a></p>
+</form>
+</sc-if>
+
+<sc-if value="{{sent}}" hint-placeholder-val="{{ false }}">
+<div role="status" style="display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: 20px; border-radius: 16px; background: #E0D6C2; color: #211D18">
+<span aria-hidden="true" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 999px; background: #596044; color: #F7F0E6"><svg viewBox="0 0 24 24" width="22" height="22" style="fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+<p style="margin: 0; font-family: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', sans-serif; font-size: 22px; font-weight: 700; line-height: 1.2; color: #3C3327">Thanks — message received.</p>
+<p style="margin: 0; font-size: 16px">I’ll reach out within [1 business day] to set up your free call. Give your dog a scratch from me.</p>
+<button type="button" onClick="{{reset}}" style="min-height: 44px; padding: 8px 0; border: 0; background: transparent; color: #596044; font-family: inherit; font-size: 15px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; cursor: pointer">Back to the form</button>
+</div>
+</sc-if>
+</div>
+</section>
+
+<section aria-labelledby="area-title" style="display: flex; flex-direction: column; gap: 12px; padding: 48px 20px 56px; background: #E0D6C2">
+<h2 id="area-title" style="margin: 0; font-family: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', sans-serif; font-size: 28px; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; color: #3C3327">Service area</h2>
+<p style="margin: 0; text-wrap: pretty">I train in homes across [CITY / AREA] and nearby towns, including [Town], [Town] and [Town]. Outside the area? Ask anyway — [travel fee may apply beyond X miles].</p>
+</section>
+
+</main>
+
+<footer style="flex: 1 0 auto; display: flex; flex-direction: column; gap: 32px; padding: 48px 20px 32px; background: #211D18; color: #EFE3D0">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<a href="HomeMobile.dc.html" style="display: flex; flex-direction: column; gap: 4px; align-self: flex-start; text-decoration: none; color: #F7F0E6">
+<span style="font-family: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', sans-serif; font-size: 24px; font-weight: 800; line-height: 1; letter-spacing: -0.02em">Brace Mates</span>
+<span style="font-size: 10px; font-weight: 700; line-height: 1; letter-spacing: 0.26em; text-transform: uppercase; color: #CDBFA8">Dog Training</span>
+</a>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #CDBFA8">In-home dog training in [CITY / AREA]. Practical help for you and your dog, together.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #CDBFA8">Contact</h2>
+<a href="tel:[PHONE]" style="display: flex; align-items: center; min-height: 44px; color: #F7F0E6; font-size: 16px; text-underline-offset: 4px">[PHONE]</a>
+<a href="mailto:[EMAIL]" style="display: flex; align-items: center; min-height: 44px; color: #F7F0E6; font-size: 16px; text-underline-offset: 4px">[EMAIL]</a>
+<p style="margin: 0; font-size: 16px; color: #EFE3D0">Serving [CITY / AREA] and nearby</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #CDBFA8">Explore</h2>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px">
+<a href="HomeMobile.dc.html" style="display: flex; align-items: center; min-height: 44px; color: #F7F0E6; font-size: 16px; text-decoration: none">Home</a>
+<a href="About.dc.html" style="display: flex; align-items: center; min-height: 44px; color: #F7F0E6; font-size: 16px; text-decoration: none">About</a>
+<a href="Services.dc.html" style="display: flex; align-items: center; min-height: 44px; color: #F7F0E6; font-size: 16px; text-decoration: none">Services</a>
+<a href="Gallery.dc.html" style="display: flex; align-items: center; min-height: 44px; color: #F7F0E6; font-size: 16px; text-decoration: none">Gallery</a>
+<a href="FAQ.dc.html" style="display: flex; align-items: center; min-height: 44px; color: #F7F0E6; font-size: 16px; text-decoration: none">FAQ</a>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #CDBFA8">Follow along</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<a href="https://example.com/instagram" style="display: inline-flex; align-items: center; min-height: 44px; padding: 8px 16px; border: 1px solid rgba(205, 191, 168, 0.45); border-radius: 999px; color: #F7F0E6; font-size: 15px; font-weight: 600; text-decoration: none">Instagram</a>
+<a href="https://example.com/facebook" style="display: inline-flex; align-items: center; min-height: 44px; padding: 8px 16px; border: 1px solid rgba(205, 191, 168, 0.45); border-radius: 999px; color: #F7F0E6; font-size: 15px; font-weight: 600; text-decoration: none">Facebook</a>
+<a href="https://example.com/google" style="display: inline-flex; align-items: center; min-height: 44px; padding: 8px 16px; border: 1px solid rgba(205, 191, 168, 0.45); border-radius: 999px; color: #F7F0E6; font-size: 15px; font-weight: 600; text-decoration: none">Google reviews</a>
+</div>
+</div>
+<p style="margin: 0; padding-top: 20px; border-top: 1px solid rgba(205, 191, 168, 0.2); font-size: 13px; color: #CDBFA8">© 2026 Brace Mates Dog Training</p>
+</footer>
+
+<div style="position: sticky; bottom: 0; z-index: 10; padding: 12px 16px 16px; background: rgba(239, 227, 208, 0.97); border-top: 1px solid rgba(60, 51, 39, 0.15); box-shadow: 0 -8px 24px rgba(33, 29, 24, 0.14)">
+<a href="#contact-form" style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; border-radius: 999px; background: #B56D43; color: #211D18; font-size: 19px; font-weight: 700; text-decoration: none">
+<svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+<span>Book a free call</span>
+</a>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"menuOpen":{"editor":"boolean","default":false,"section":"Preview"},"showSent":{"editor":"boolean","default":false,"section":"Preview"},"$preview":{"width":390,"height":2700}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const open = s.menuOpen ?? (this.props.menuOpen ?? false);
+    const sent = s.sent ?? (this.props.showSent ?? false);
+    return {
+      menuOpen: open,
+      menuClosed: !open,
+      menuExpanded: open ? 'true' : 'false',
+      menuLabel: open ? 'Close menu' : 'Open menu',
+      toggleMenu: () => this.setState({ menuOpen: !open }),
+      sent: sent,
+      notSent: !sent,
+      submit: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ sent: true }); },
+      reset: () => this.setState({ sent: false })
+    };
+  }
+}
+</script>
+</body>
+</html>
