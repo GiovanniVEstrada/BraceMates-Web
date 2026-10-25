@@ -1,0 +1,176 @@
+---
+import { nav, site, telHref, mailHref, hasPlaceholderSocials } from '../data/site';
+import Wordmark from './Wordmark.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__cols">
+      <div class="footer__brand">
+        <Wordmark size="footer" />
+        <p class="footer__blurb">In-home dog training in {site.city}. {site.footerBlurb}</p>
+      </div>
+
+      <div class="footer__col">
+        <h2 class="footer__h">Contact</h2>
+        <ul class="footer__list">
+          <li><a class="footer__link footer__link--tap" href={telHref()}>{site.phone}</a></li>
+          <li><a class="footer__link footer__link--tap" href={mailHref()}>{site.email}</a></li>
+          <li class="footer__text">Serving {site.city} and nearby</li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h2 class="footer__h">Explore</h2>
+        <ul class="footer__explore">
+          {nav.map((item) => <li><a class="footer__link footer__link--plain" href={item.href}>{item.label}</a></li>)}
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h2 class="footer__h">Follow along</h2>
+        <ul class="footer__socials">
+          {site.socials.map((s) => <li><a class="footer__pill" href={s.url}>{s.label}</a></li>)}
+        </ul>
+        {hasPlaceholderSocials() && <p class="footer__note">{site.socialsNote}</p>}
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© {year} {site.name}</span>
+      <span>Trainer: {site.trainer}</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: 48px var(--gutter) 32px;
+    background: var(--espresso);
+    color: var(--linen);
+  }
+  .footer__inner {
+    max-width: var(--container);
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .footer__cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+    gap: 32px 40px;
+  }
+  .footer__brand,
+  .footer__col {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .footer__blurb {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--on-dark-muted);
+  }
+  .footer__h {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--on-dark-muted);
+  }
+  .footer__list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 16px;
+  }
+  .footer__text {
+    color: var(--linen);
+  }
+  .footer__link {
+    color: var(--linen-light);
+    font-size: 16px;
+  }
+  .footer__link:hover {
+    color: var(--linen-light);
+  }
+  .footer__link--tap {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    text-underline-offset: 4px;
+  }
+  .footer__link--plain {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    text-decoration: none;
+  }
+  .footer__link--plain:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .footer__explore {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 16px;
+  }
+  .footer__socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .footer__pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px 16px;
+    border: 1px solid var(--border-on-dark-pill);
+    border-radius: var(--radius-pill);
+    color: var(--linen-light);
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .footer__pill:hover {
+    color: var(--linen-light);
+    background: var(--nav-pill-bg);
+  }
+  .footer__note {
+    font-size: 13px;
+    color: var(--on-dark-muted);
+  }
+  .footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-on-dark);
+    font-size: 13px;
+    color: var(--on-dark-muted);
+  }
+
+  @media (min-width: 768px) {
+    .footer {
+      padding: 72px var(--gutter) 40px;
+    }
+    .footer__inner {
+      gap: 48px;
+    }
+    .footer__blurb {
+      font-size: 16px;
+    }
+    .footer__h {
+      font-size: 13px;
+    }
+    .footer__bottom {
+      padding-top: 24px;
+      font-size: 14px;
+    }
+  }
+</style>

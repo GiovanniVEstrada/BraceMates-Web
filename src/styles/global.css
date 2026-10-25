@@ -1,0 +1,291 @@
+/* Brace Mates Dog Training - global tokens, reset and base type.
+   Components must use these tokens, never raw hex values. */
+
+:root {
+  /* Core palette (from the owner) */
+  --espresso: #211d18; /* footer bg, darkest text, text on copper buttons, body bg */
+  --walnut: #3c3327; /* header bg, all headings, CTA band bg */
+  --leather: #65523a; /* eyebrows, step numbers, quote marks, dashed placeholder borders */
+  --od-green: #596044; /* links, outline buttons, icons, Home service cards, tags, FAQ toggles */
+  --copper: #b56d43; /* primary CTA buttons only, plus the focus ring */
+  --linen: #efe3d0; /* page background */
+
+  /* Derived tokens */
+  --linen-light: #f7f0e6; /* cards, text on dark backgrounds */
+  --linen-dark: #e0d6c2; /* alternating section bands */
+  --text: #463c30; /* body text */
+  --text-muted: #635545; /* secondary text */
+  --on-dark-muted: #cdbfa8; /* secondary text on walnut/espresso */
+  --input-bg: #fffbf4; /* form fields */
+  --placeholder: #6b5d4c; /* input placeholder text */
+  --border: rgba(60, 51, 39, 0.15); /* hairlines on light */
+  --border-section: rgba(60, 51, 39, 0.18); /* section dividers */
+  --border-input: rgba(60, 51, 39, 0.35); /* inputs */
+  --border-dashed: rgba(101, 82, 58, 0.55); /* dashed placeholder cards (leather) */
+  --border-on-dark: rgba(205, 191, 168, 0.2); /* hairlines on dark */
+  --border-on-dark-pill: rgba(205, 191, 168, 0.45); /* outlined pills on dark (footer socials) */
+  --border-on-dark-strong: rgba(205, 191, 168, 0.6); /* outlined call pill on dark */
+  --hero-overlay: rgba(33, 29, 24, 0.6); /* over the hero photo; tune 0.45-0.7 */
+
+  /* Values taken from the reference inline styles */
+  --white: #ffffff; /* hero and CTA-band H1 */
+  --nav-pill-bg: rgba(247, 240, 230, 0.14); /* current page pill in the header */
+  --nav-divider: rgba(239, 227, 208, 0.15); /* line above the mobile menu panel */
+  --on-green-divider: rgba(247, 240, 230, 0.3); /* rule inside green service cards */
+  --tag-on-green: rgba(33, 29, 24, 0.3); /* tag pill on green cards */
+  --caption-bg: rgba(20, 17, 13, 0.62); /* hero photo caption chip */
+  --sticky-bg: rgba(239, 227, 208, 0.97); /* sticky mobile CTA bar */
+  --shadow-sticky: 0 -8px 24px rgba(33, 29, 24, 0.14);
+  --shadow-card: 0 1px 2px rgba(33, 29, 24, 0.06), 0 8px 24px rgba(33, 29, 24, 0.06);
+
+  /* Photo placeholder tones (until real photos exist) */
+  --photo-sage: #b3b297;
+  --photo-sand: #c2b39b;
+  --photo-cream: #dccdb3;
+  --photo-clay: #cf9f80;
+  --photo-hero: #4a3f31;
+
+  /* Type */
+  --font-display: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', sans-serif;
+  --font-body: 'Figtree Variable', 'Figtree', 'Helvetica Neue', Arial, sans-serif;
+
+  /* Layout */
+  --container: 1176px;
+  --container-wide: 1240px;
+  --gutter: clamp(20px, 4vw, 32px);
+  --radius-card: 20px;
+  --radius-card-sm: 14px;
+  --radius-input: 12px;
+  --radius-pill: 999px;
+  --sticky-height: 86px; /* sticky mobile CTA bar, excluding safe-area inset */
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  background: var(--espresso);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--espresso);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Room for the fixed mobile CTA so it never covers the footer */
+@media (max-width: 767.98px) {
+  body {
+    padding-bottom: calc(var(--sticky-height) + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 18px;
+  }
+}
+
+img,
+svg,
+picture {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+ul,
+ol,
+figure,
+blockquote {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+/* Links */
+a {
+  color: var(--od-green);
+}
+
+a:hover {
+  color: var(--walnut);
+}
+
+/* Headings */
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  color: var(--walnut);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 56px;
+  }
+  h2 {
+    font-size: clamp(32px, 3.4vw, 46px);
+  }
+  h3 {
+    font-size: 24px;
+  }
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Hero H1: add class="hero-title" */
+.hero-title {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: var(--white);
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: clamp(44px, 6vw, 78px);
+  }
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 3px solid var(--copper);
+  outline-offset: 3px;
+}
+
+/* Utilities */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+}
+
+.container-wide {
+  width: 100%;
+  max-width: var(--container-wide);
+  margin-inline: auto;
+}
+
+/* Section: side gutters + vertical padding (56-64px mobile, 96-112px desktop).
+   Use on a full-width <section>; put a .container inside. */
+.section {
+  padding: 56px var(--gutter);
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 104px var(--gutter);
+  }
+}
+
+.band-dark {
+  background: var(--linen-dark);
+}
+
+.band-walnut {
+  background: var(--walnut);
+  color: var(--on-dark-muted);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip link (rendered by BaseLayout) */
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -80px;
+  z-index: 100;
+  padding: 12px 20px;
+  border-radius: var(--radius-pill);
+  background: var(--linen-light);
+  color: var(--espresso);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

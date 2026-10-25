@@ -1,0 +1,54 @@
+---
+/**
+ * Numbered steps ("How it works"): leather numerals with a 2px walnut top rule.
+ * Defaults to the Home steps from src/data/site.ts (`howItWorks.steps`).
+ */
+import { howItWorks } from '../data/site';
+
+interface Step {
+  title: string;
+  body: string;
+}
+interface Props {
+  steps?: readonly Step[];
+}
+const { steps = howItWorks.steps } = Astro.props;
+---
+
+<ol class="steps">
+  {
+    steps.map((step, i) => (
+      <li class="step">
+        <span class="step__num" aria-hidden="true">{i + 1}</span>
+        <h3 class="step__title">{step.title}</h3>
+        <p>{step.body}</p>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: 40px 56px;
+  }
+  .step {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 2px solid var(--walnut);
+  }
+  .step__num {
+    font-family: var(--font-display);
+    font-size: 72px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--leather);
+  }
+  .step__title {
+    font-size: 26px;
+    line-height: 1.2;
+  }
+</style>

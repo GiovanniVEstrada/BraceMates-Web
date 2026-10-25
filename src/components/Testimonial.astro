@@ -1,0 +1,86 @@
+---
+/**
+ * Testimonial card. With `placeholder` (default true until real quotes exist) it renders the
+ * dashed leather border and "Placeholder" badge. Never write fake reviews: real quotes only,
+ * with client permission. Set placeholder={false} for a real one.
+ */
+interface Props {
+  quote: string;
+  name: string;
+  location: string;
+  placeholder?: boolean;
+}
+const { quote, name, location, placeholder = true } = Astro.props;
+---
+
+<figure class:list={['t', { 't--placeholder': placeholder }]}>
+  <span class="t__mark" aria-hidden="true">“</span>
+  <blockquote class="t__quote">{quote}</blockquote>
+  <figcaption class="t__cap">
+    <span class="t__who">
+      <strong>{name}</strong>
+      <span>{location}</span>
+    </span>
+    {placeholder && <span class="t__badge">Placeholder</span>}
+  </figcaption>
+</figure>
+
+<style>
+  .t {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 32px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-card);
+    background: var(--linen-light);
+  }
+  .t--placeholder {
+    border-style: dashed;
+    border-color: var(--border-dashed);
+  }
+  .t__mark {
+    padding-top: 18px;
+    font-family: var(--font-display);
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 0.6;
+    color: var(--leather);
+  }
+  .t__quote {
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--walnut);
+    text-wrap: pretty;
+  }
+  .t__cap {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .t__who {
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    line-height: 1.4;
+    color: var(--text-muted);
+  }
+  .t__who strong {
+    color: var(--espresso);
+  }
+  .t__badge {
+    flex-shrink: 0;
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+    background: var(--linen);
+    color: var(--leather);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+</style>

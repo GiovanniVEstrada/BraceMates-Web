@@ -1,0 +1,128 @@
+---
+/**
+ * Closing call-to-action band. Two looks, both with the copper primary button:
+ *  - tone "walnut" (Home final CTA): centered, dark band, optional "or call" link.
+ *  - tone "light" (inner pages, on --linen-dark): left-aligned, stacked full-width button on mobile.
+ * Copy comes from the page (verbatim from the reference).
+ * Slots: default = body paragraph. Button label is `buttonLabel`.
+ */
+import { site, telHref } from '../data/site';
+import Button from './Button.astro';
+
+interface Props {
+  id?: string;
+  title: string;
+  buttonLabel?: string;
+  buttonHref?: string;
+  tone?: 'walnut' | 'light';
+  /** Show the "or call [PHONE]" link beside the button. */
+  showCall?: boolean;
+}
+const {
+  id = 'cta-title',
+  title,
+  buttonLabel = 'Book a free consultation',
+  buttonHref = '/contact',
+  tone = 'walnut',
+  showCall = tone === 'walnut',
+} = Astro.props;
+---
+
+<section aria-labelledby={id} class:list={['cta', `cta--${tone}`]}>
+  <div class="cta__inner">
+    <h2 id={id} class="cta__title">{title}</h2>
+    <p class="cta__body"><slot /></p>
+    <div class="cta__actions">
+      <Button href={buttonHref} size="lg">{buttonLabel}</Button>
+      {showCall && <a class="cta__call" href={telHref()}>or call {site.phone}</a>}
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta {
+    padding: 56px var(--gutter);
+  }
+  .cta__inner {
+    max-width: 760px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .cta__title {
+    font-size: 30px;
+    line-height: 1.12;
+  }
+  .cta__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px 28px;
+    margin-top: 8px;
+  }
+
+  /* light: sits on a linen-dark band */
+  .cta--light {
+    background: var(--linen-dark);
+  }
+  .cta--light .cta__actions :global(.btn) {
+    width: 100%;
+  }
+
+  /* walnut: centered dark band */
+  .cta--walnut {
+    background: var(--walnut);
+    color: var(--linen);
+  }
+  .cta--walnut .cta__inner {
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+  }
+  .cta--walnut .cta__title {
+    font-size: clamp(34px, 4vw, 54px);
+    font-weight: 800;
+    line-height: 1.06;
+    color: var(--white);
+  }
+  .cta--walnut .cta__body {
+    max-width: 34em;
+    font-size: 19px;
+  }
+  .cta--walnut .cta__actions {
+    align-items: center;
+    margin-top: 12px;
+  }
+  .cta__call {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    color: var(--linen-light);
+    font-size: 17px;
+    font-weight: 600;
+    text-underline-offset: 4px;
+  }
+  .cta__call:hover {
+    color: var(--linen-light);
+  }
+
+  @media (min-width: 768px) {
+    .cta {
+      padding: 112px var(--gutter);
+    }
+    .cta--light {
+      padding: 80px var(--gutter);
+    }
+    .cta__actions {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .cta--light .cta__actions :global(.btn) {
+      width: auto;
+    }
+    .cta--walnut .cta__actions {
+      justify-content: center;
+    }
+  }
+</style>

@@ -1,0 +1,160 @@
+---
+/**
+ * Photo placeholder: tone + 135deg hatch + camera icon + label.
+ * Swap for astro:assets <Image> per slot once real photos exist.
+ *
+ * variant:
+ *  - "center": centered stack with icon, bold title and caption (About portrait). Give it a height/aspect via `class` or `style`.
+ *  - "tile":   bottom-left label, large (Gallery 2x2 tile). Fills its parent.
+ *  - "tile-sm": bottom-left label, small (other Gallery tiles). Fills its parent.
+ *  - "hero":   absolutely fills a `position: relative` parent (hero background) and shows a caption chip bottom-right.
+ */
+import Icon from './Icon.astro';
+
+interface Props {
+  tone?: 'sage' | 'sand' | 'cream' | 'clay' | 'hero';
+  variant?: 'center' | 'tile' | 'tile-sm' | 'hero';
+  /** Bold uppercase line, e.g. "About photo", "Gallery 01", "02". */
+  title?: string;
+  /** Description line, e.g. "Lance with a dog, natural light, portrait (4:5)". */
+  caption?: string;
+  /** aria-label. Defaults to "Photo placeholder: <caption>". */
+  label?: string;
+  class?: string;
+  style?: string;
+}
+
+const { tone = 'sage', variant = 'center', title, caption, label, class: className, style } = Astro.props;
+const aria = label ?? `Photo placeholder: ${caption ?? title ?? 'photo'}`;
+---
+
+<div
+  role="img"
+  aria-label={aria}
+  class:list={['ph', `ph--${variant}`, `ph--${tone}`, className]}
+  style={style}
+>
+  {
+    variant === 'hero' ? (
+      <div class="ph__chip" aria-hidden="true">
+        <Icon name="camera" size={16} />
+        <span>{caption}</span>
+      </div>
+    ) : (
+      <>
+        {(variant === 'center' || variant === 'tile') && (
+          <Icon name="camera" size={variant === 'center' ? 32 : 22} strokeWidth={1.75} />
+        )}
+        {title && <span class="ph__title">{title}</span>}
+        {caption && <span class="ph__caption">{caption}</span>}
+      </>
+    )
+  }
+</div>
+
+<style>
+  .ph {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    color: var(--espresso);
+    background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0 2px, transparent 2px 20px);
+  }
+  .ph--sage {
+    background-color: var(--photo-sage);
+  }
+  .ph--sand {
+    background-color: var(--photo-sand);
+  }
+  .ph--cream {
+    background-color: var(--photo-cream);
+  }
+  .ph--clay {
+    background-color: var(--photo-clay);
+  }
+  .ph--hero {
+    background-color: var(--photo-hero);
+    background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0 2px, transparent 2px 22px);
+  }
+
+  /* center */
+  .ph--center {
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 24px;
+    border-radius: var(--radius-card);
+    text-align: center;
+  }
+  .ph--center .ph__title {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .ph--center .ph__caption {
+    max-width: 24ch;
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  /* tiles */
+  .ph--tile,
+  .ph--tile-sm {
+    width: 100%;
+    height: 100%;
+    justify-content: flex-end;
+    border-radius: 16px;
+  }
+  .ph--tile {
+    gap: 6px;
+    padding: 16px;
+  }
+  .ph--tile-sm {
+    gap: 4px;
+    padding: 12px;
+  }
+  .ph--tile .ph__title {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .ph--tile .ph__caption {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  .ph--tile-sm .ph__title {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .ph--tile-sm .ph__caption {
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  /* hero background */
+  .ph--hero {
+    position: absolute;
+    inset: 0;
+    color: var(--linen);
+  }
+  .ph__chip {
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: calc(100% - 48px);
+    padding: 8px 16px;
+    border-radius: var(--radius-pill);
+    background: var(--caption-bg);
+    color: var(--linen);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+</style>

@@ -1,0 +1,231 @@
+---
+/**
+ * Site header. Current page is detected from the URL (aria-current="page").
+ * Desktop: wordmark, nav, outlined "Call [PHONE]" pill.
+ * Mobile: wordmark, 44px phone button, 44px menu button; menu panel opens below the bar.
+ */
+import { nav, site, telHref } from '../data/site';
+import Wordmark from './Wordmark.astro';
+import Icon from './Icon.astro';
+import Button from './Button.astro';
+
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href || path.startsWith(`${href}/`));
+---
+
+<header class="site-header" data-site-header>
+  <div class="site-header__inner">
+    <Wordmark size="header" />
+
+    <nav id="site-nav" class="site-nav" aria-label="Main">
+      {
+        nav.map((item) => (
+          <a href={item.href} class="site-nav__link" aria-current={isCurrent(item.href) ? 'page' : undefined}>
+            {item.label}
+          </a>
+        ))
+      }
+      <Button
+        href={telHref()}
+        variant="outline-dark"
+        size="lg"
+        icon={false}
+        class="site-nav__call"
+      >
+        Call {site.phone}
+      </Button>
+    </nav>
+
+    <div class="site-header__actions">
+      <Button
+        href={telHref()}
+        variant="outline-dark"
+        icon="phone"
+        iconPosition="start"
+        class="site-header__call-desktop"
+      >
+        Call {site.phone}
+      </Button>
+      <a href={telHref()} class="icon-btn site-header__call-mobile" aria-label={`Call ${site.phone}`}>
+        <Icon name="phone" size={22} />
+      </a>
+      <button
+        type="button"
+        class="icon-btn site-header__menu"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        aria-label="Open menu"
+        data-menu-button
+      >
+        <span class="icon-open"><Icon name="menu" size={24} /></span>
+        <span class="icon-close"><Icon name="x" size={24} /></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background: var(--walnut);
+    color: var(--linen);
+  }
+  .site-header__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0 12px;
+    min-height: 64px;
+    padding: 8px 10px 8px 20px;
+  }
+  .site-header__actions {
+    order: 2;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--linen-light);
+  }
+  .icon-btn:hover {
+    color: var(--linen-light);
+    background: var(--nav-pill-bg);
+  }
+  .site-header__actions :global(.site-header__call-desktop) {
+    display: none;
+  }
+  .icon-close {
+    display: none;
+  }
+  .site-header__menu[aria-expanded='true'] .icon-open {
+    display: none;
+  }
+  .site-header__menu[aria-expanded='true'] .icon-close {
+    display: block;
+  }
+
+  /* Mobile menu panel */
+  .site-nav {
+    order: 3;
+    flex-basis: calc(100% + 30px);
+    margin: 0 -10px 0 -20px;
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 12px 20px;
+    border-top: 1px solid var(--nav-divider);
+  }
+  .site-header.is-open .site-nav {
+    display: flex;
+  }
+  .site-nav__link {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 0 12px;
+    border-radius: var(--radius-input);
+    color: var(--linen);
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .site-nav__link:hover {
+    color: var(--linen-light);
+    background: var(--nav-pill-bg);
+  }
+  .site-nav__link[aria-current='page'] {
+    background: var(--nav-pill-bg);
+    color: var(--linen-light);
+    font-weight: 700;
+  }
+  .site-nav :global(.site-nav__call) {
+    margin-top: 10px;
+    width: 100%;
+    min-height: 52px;
+  }
+
+  @media (min-width: 768px) {
+    .site-header__inner {
+      max-width: var(--container-wide);
+      margin-inline: auto;
+      gap: 12px 32px;
+      padding: 16px var(--gutter);
+    }
+    .site-header__actions {
+      order: 3;
+    }
+    .icon-btn.site-header__call-mobile,
+    .site-header__menu,
+    .site-nav :global(.site-nav__call) {
+      display: none;
+    }
+    .site-header__actions :global(.site-header__call-desktop) {
+      display: inline-flex;
+    }
+    .site-nav {
+      order: 2;
+      display: flex;
+      flex-direction: row;
+      flex-basis: auto;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px;
+      margin: 0;
+      padding: 0;
+      border-top: 0;
+    }
+    .site-nav__link {
+      min-height: 44px;
+      padding: 10px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .site-nav__link[aria-current='page'] {
+      font-weight: 600;
+    }
+  }
+</style>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
+  const button = header?.querySelector<HTMLButtonElement>('[data-menu-button]');
+  const nav = header?.querySelector<HTMLElement>('#site-nav');
+
+  if (header && button && nav) {
+    const setOpen = (open: boolean) => {
+      header.classList.toggle('is-open', open);
+      button.setAttribute('aria-expanded', String(open));
+      button.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+
+    button.addEventListener('click', () => setOpen(button.getAttribute('aria-expanded') !== 'true'));
+
+    // Close on link click
+    nav.addEventListener('click', (event) => {
+      if ((event.target as HTMLElement).closest('a')) setOpen(false);
+    });
+
+    // Close on Escape and return focus to the menu button
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        button.focus();
+      }
+    });
+
+    // Reset when the viewport grows to desktop
+    window.matchMedia('(min-width: 768px)').addEventListener('change', (e) => {
+      if (e.matches) setOpen(false);
+    });
+  }
+</script>
