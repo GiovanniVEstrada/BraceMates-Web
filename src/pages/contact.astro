@@ -1,0 +1,202 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import Button from '../components/Button.astro';
+import Icon from '../components/Icon.astro';
+import { site, telHref, mailHref, hasPlaceholderSocials } from '../data/site';
+
+const [town1, town2, town3] = site.serviceArea.towns;
+---
+
+<BaseLayout
+  title={`Contact | Brace Mates Dog Training`}
+  description={`Call, text or email Lance for in-home dog training in ${site.city} and nearby towns. Your first call is free.`}
+>
+  <div class="wrap">
+    <div class="container layout">
+      <div class="main-col">
+        <section class="intro" aria-labelledby="contact-title">
+          <Eyebrow>Contact</Eyebrow>
+          <h1 id="contact-title">Let’s talk about your dog</h1>
+        </section>
+
+        <ul class="tiles" aria-label="Ways to reach me">
+          <li>
+            <a class="tile" href={telHref()}>
+              <span class="tile__icon" aria-hidden="true"><Icon name="phone" size={18} /></span>
+              <span class="tile__text"><span class="tile__label">Call or text</span><strong>{site.phone}</strong></span>
+            </a>
+          </li>
+          <li>
+            <a class="tile" href={mailHref()}>
+              <span class="tile__icon" aria-hidden="true"><Icon name="mail" size={18} /></span>
+              <span class="tile__text"><span class="tile__label">Email</span><strong>{site.email}</strong></span>
+            </a>
+          </li>
+          <li class="tile">
+            <span class="tile__icon" aria-hidden="true"><Icon name="map-pin" size={18} /></span>
+            <span class="tile__text"><span class="tile__label">Service area</span><strong>{site.city} and nearby</strong></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="side-col">
+        <section class="area" aria-labelledby="area-title">
+          <h2 id="area-title">Service area</h2>
+          <p>
+            I train in homes across {site.city} and nearby towns, including {town1}, {town2} and {town3}. Outside the area? Ask anyway — {site.serviceArea.travelFeeNote}.
+          </p>
+        </section>
+
+        <section class="follow" aria-labelledby="follow-title">
+          <h2 id="follow-title">Follow along</h2>
+          <ul class="follow__list">
+            {site.socials.map((s) => <li><Button href={s.url} variant="secondary" size="sm">{s.label}</Button></li>)}
+          </ul>
+          {hasPlaceholderSocials() && <p class="follow__note">{site.socialsNote}</p>}
+        </section>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .wrap {
+    padding-inline: var(--gutter);
+  }
+  .layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .intro {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 48px 0 24px;
+  }
+  .tiles {
+    list-style: none;
+    padding: 0 0 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .tile {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 64px;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card-sm);
+    background: var(--linen-light);
+    color: var(--espresso);
+    text-decoration: none;
+  }
+  .tile__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-pill);
+    background: var(--od-green);
+    color: var(--linen-light);
+  }
+  .tile__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.35;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .tile__label {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .tile strong {
+    font-size: 17px;
+  }
+  a.tile:hover {
+    color: var(--espresso);
+    border-color: var(--od-green);
+  }
+
+  /* Mobile: service area is a full-bleed band, as in the reference */
+  .area {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-inline: calc(-1 * var(--gutter));
+    padding: 48px var(--gutter) 56px;
+    background: var(--linen-dark);
+  }
+  .area h2 {
+    font-size: 28px;
+  }
+  .area p {
+    text-wrap: pretty;
+  }
+  .follow {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-inline: calc(-1 * var(--gutter));
+    padding: 40px var(--gutter) 56px;
+  }
+  .follow h2 {
+    font-size: 28px;
+  }
+  .follow__list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .follow__note {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  @media (min-width: 768px) {
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 0 72px;
+      align-items: start;
+      padding: 88px 0 104px;
+    }
+    .intro {
+      padding: 0 0 40px;
+      gap: 16px;
+    }
+    .intro h1 {
+      font-size: 56px;
+      line-height: 1.04;
+    }
+    .tiles {
+      padding-bottom: 0;
+      gap: 12px;
+    }
+    .side-col {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding-top: 8px;
+    }
+    .area {
+      margin-inline: 0;
+      padding: 40px;
+      border-radius: var(--radius-card);
+    }
+    .area h2 {
+      font-size: clamp(28px, 3vw, 34px);
+    }
+    .follow {
+      margin-inline: 0;
+      padding: 0 8px;
+    }
+  }
+</style>
