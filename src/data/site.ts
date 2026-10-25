@@ -63,6 +63,9 @@ export const telHref = (): string =>
 
 export const mailHref = (): string => `mailto:${site.email}`;
 
+/** Keep false until the owner's real details are in; true removes the sitewide noindex tag. */
+export const allowIndexing = false;
+
 /** Social links that are real (not the example.com stand-ins). Use for JSON-LD sameAs. */
 export const realSocials = () => site.socials.filter((s) => !s.url.includes('example.com'));
 
