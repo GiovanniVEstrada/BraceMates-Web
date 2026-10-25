@@ -19,6 +19,7 @@ export const site = {
   footerBlurb: 'Practical help for you and your dog, together.',
 
   socials: [
+    { label: 'All links', url: 'https://paa.ge/bracemates/en' },
     { label: 'Instagram', url: 'https://example.com/instagram' },
     { label: 'Facebook', url: 'https://example.com/facebook' },
     { label: 'Google reviews', url: 'https://example.com/google' },

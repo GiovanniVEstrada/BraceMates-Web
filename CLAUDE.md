@@ -26,7 +26,7 @@
 
 - **Source of truth:** all copy, section order, inline `style="…"` values (colors, sizes, spacing, radii) and the inline SVG icons.
 - **Ignore these tool-only constructs:** `<x-dc>`, `<helmet>`, `<sc-if>`, `{{ … }}` template holes, `<script type="text/x-dc">`, `data-props`, `support.js`, and `.dc.html` link targets. Map links to real routes (`Main.dc.html`/`HomeMobile.dc.html` → `/`, `About.dc.html` → `/about`, and so on).
-- **Interactivity in the mockup:** the mobile menu toggle, the FAQ accordion and the contact form's "sent" state. Rebuild these as described below.
+- **Interactivity in the mockup:** the mobile menu toggle and the FAQ accordion. Rebuild these as described below. The mockup's contact form and its "sent" state are **not** built (see section 8).
 - Only Home has a desktop mockup. **Design the desktop layouts of the inner pages** by extending Home's desktop patterns (section 7).
 - Home copy: use `Main.dc.html` as canonical. The mobile mockup trims the hero eyebrow and subtitle slightly. Using the shorter mobile strings under 640px is optional.
 
@@ -37,7 +37,7 @@
 - **Astro** (latest), static output, TypeScript. A brochure site gets the best SEO and speed from plain HTML, and Astro gives shared layouts and components without shipping a JS framework.
 - **Plain CSS** with custom properties (`src/styles/global.css`) plus component-scoped `<style>`. No Tailwind needed.
 - **Minimal JS:** only the mobile menu toggle (a small inline script). The FAQ uses native `<details>`/`<summary>`.
-- **Hosting:** Netlify (free tier). The contact form uses **Netlify Forms**, so no backend is needed.
+- **Hosting:** Netlify (free tier). There is no contact form and no backend; visitors reach Lance by phone, email or his links page.
 - Node 20+.
 
 > If the owner prefers React + Vite instead, everything below still applies. Keep the output static or prerendered for SEO.
@@ -61,7 +61,7 @@ src/
     Testimonial.astro  StepList.astro  CTABand.astro
   pages/
     index.astro  about.astro  services.astro  gallery.astro
-    faq.astro  contact.astro  thanks.astro  404.astro
+    faq.astro  contact.astro  404.astro
   assets/images/     # real photos go here (optimized by astro:assets)
 public/
   favicon.svg  robots.txt  og-image.jpg
@@ -161,7 +161,7 @@ Photo placeholder tones (until real photos exist): `#B3B297`, `#C2B39B`, `#DCCDB
 - **Follow along:** Instagram / Facebook / Google reviews outline pills, with URLs from `site.ts`
 - **Bottom row:** © current year, Brace Mates Dog Training
 
-**Sticky mobile CTA:** a fixed bar at the bottom below 768px. Translucent linen background, top hairline, soft upward shadow, and a full-width copper "Book a free call" button with a phone icon linking to `/contact`. On `/contact` it links to `#contact-form`. Add `padding-bottom` to `<body>` so it never covers the footer, and include `env(safe-area-inset-bottom)`. Hide it on desktop.
+**Sticky mobile CTA:** a fixed bar at the bottom below 768px. Translucent linen background, top hairline, soft upward shadow, and a full-width copper "Book a free call" button with a phone icon linking to `/contact`. On `/contact` it becomes a plain `tel:` "Call" link instead. Add `padding-bottom` to `<body>` so it never covers the footer, and include `env(safe-area-inset-bottom)`. Hide it on desktop.
 
 ---
 
@@ -208,35 +208,17 @@ Section order and copy come from the reference files. Desktop notes for inner pa
 - Also emit `FAQPage` JSON-LD from `faq.ts`.
 
 **Contact** (`/contact`). Reference: `Contact.dc.html`.
-- Sections: intro → three contact tiles (Call or text, Email, Service area) → form card `#contact-form` → "Service area" section.
-- Desktop: two columns, info left and form right.
-- Form fields: Your name, Email, Phone, Dog's name, Dog's age (side by side), "What do you need help with?" (textarea with the reference placeholder).
-- Submit button: "Send message".
-- Under the button: "Prefer to talk? Call [PHONE]".
-
-**Thanks** (`/thanks`): the form success state from the mockup.
-- Check icon, "Thanks — message received."
-- "I'll reach out within [1 business day] to set up your free call. Give your dog a scratch from me."
-- A link back home.
+- Sections: intro → three contact tiles (Call or text, Email, Service area) → "Service area" section → "Follow along" link pills (from `site.socials`, including the links page).
+- Desktop: two columns, intro and tiles left, service area and links right.
+- **No form.** The mockup's form card, "Send message" button, "Prefer to talk?" line and the `/thanks` success page are intentionally not built (owner decision).
 
 **404:** a short friendly message plus links to Home and Contact, in the same style.
 
 ---
 
-## 8. Contact form (Netlify Forms)
+## 8. Contact method (no form)
 
-```html
-<form name="contact" method="POST" action="/thanks"
-      data-netlify="true" netlify-honeypot="bot-field">
-  <input type="hidden" name="form-name" value="contact" />
-  <p hidden><label>Don't fill this out: <input name="bot-field" /></label></p>
-  <!-- fields: name, email (type=email), phone (type=tel), dog_name, dog_age, help (textarea) -->
-</form>
-```
-
-- Every input has a visible `<label for>`. Mark `name`, `email` and `help` as `required`.
-- After the first deploy, set form notifications in Netlify (Forms → Notifications) to `[EMAIL]`.
-- If the host isn't Netlify, swap in Formspree with the same fields.
+The site has no contact form, no Netlify Forms and no `/thanks` page. Visitors contact Lance directly through `tel:` and `mailto:` links and his links page (`site.socials`). Do not add a form or any message-sending feature without asking the owner.
 
 ---
 
@@ -269,7 +251,6 @@ Section order and copy come from the reference files. Desktop notes for inner pa
 - [ ] `:focus-visible` copper ring on all interactive elements.
 - [ ] Menu button has `aria-expanded`/`aria-controls`; Escape closes the menu.
 - [ ] FAQ works by keyboard (native `<details>`).
-- [ ] All form fields labeled; errors announced; success page has a clear heading.
 - [ ] Icon-only buttons have `aria-label`; decorative SVGs have `aria-hidden="true"`.
 - [ ] Touch targets ≥44px; no horizontal scroll at 320px.
 - [ ] `prefers-reduced-motion` respected.
@@ -320,7 +301,7 @@ Add `scripts/check-placeholders.mjs` and `npm run check:placeholders`. It scans 
 
 1. `git init`, commit, push to a new GitHub repo.
 2. Netlify → **Add new site → Import from Git** → pick the repo. Build command `npm run build`, publish directory `dist`.
-3. After the first deploy, confirm the `contact` form appears under **Forms** and set the notification email.
+3. After the first deploy, click through every page and every `tel:`, `mailto:` and social link.
 4. **Domain:** buy one (e.g. bracematesdogtraining.com, availability unchecked), add it under **Domain management**, point DNS to Netlify. HTTPS is automatic.
 5. Submit `sitemap-index.xml` in Google Search Console. A Google Business Profile matters a lot for a local service business; link it from the footer once it exists.
 
@@ -333,7 +314,6 @@ Add `scripts/check-placeholders.mjs` and `npm run check:placeholders`. It scans 
 - [ ] All copy is verbatim from the reference files; no invented facts, prices, credentials or reviews.
 - [ ] All nav, footer, `tel:` and `mailto:` links work.
 - [ ] The sticky CTA shows only on mobile and never hides content.
-- [ ] The form submits on the deployed site and reaches the inbox.
 - [ ] Lighthouse ≥ 95 for Performance, Accessibility, Best Practices and SEO (mobile).
 - [ ] `npm run check:placeholders` is clean, or the owner has approved what remains, before going public.
 
@@ -349,7 +329,7 @@ Commit after each step.
 4. `BaseLayout`, `Header` (with mobile menu), `Footer`, `StickyCTA`, `Wordmark`, `Button`, `Icon`, `PhotoPlaceholder`.
 5. Home: mobile first, then desktop. Compare against both references.
 6. About, Services, Gallery, FAQ, Contact (mobile per reference, desktop per section 7).
-7. Form wiring, `/thanks`, `404`.
+7. `404` (no form or `/thanks`; see section 8).
 8. SEO: meta, Open Graph, JSON-LD, sitemap, robots, favicon.
 9. QA pass: section 11, then section 14. Then deploy (section 13).
 
