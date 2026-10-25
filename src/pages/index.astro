@@ -2,7 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import Eyebrow from '../components/Eyebrow.astro';
-import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
+import { Image } from 'astro:assets';
+import heroPhoto from '../assets/images/photo-11-dog-golden-dust.png';
 import ServiceCardCompact from '../components/ServiceCardCompact.astro';
 import StepList from '../components/StepList.astro';
 import Testimonial from '../components/Testimonial.astro';
@@ -17,11 +18,15 @@ import { services, servicesCopy } from '../data/services';
 >
   <!-- Hero -->
   <section class="hero" aria-labelledby="hero-title">
-    <PhotoPlaceholder
-      variant="hero"
-      tone="hero"
-      caption="HERO PHOTO — happy dog on a walk, wide shot, open space on the left for text"
-      label="Photo placeholder: hero photo, happy dog on a walk"
+    <Image
+      class="hero__img"
+      src={heroPhoto}
+      alt=""
+      widths={[640, 960, 1394]}
+      sizes="100vw"
+      format="webp"
+      loading="eager"
+      fetchpriority="high"
     />
     <div class="hero__overlay" aria-hidden="true"></div>
     <div class="hero__inner container-wide">
@@ -130,6 +135,14 @@ import { services, servicesCopy } from '../data/services';
     display: flex;
     align-items: center;
     overflow: hidden;
+  }
+  .hero__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right center;
   }
   .hero__overlay {
     position: absolute;
