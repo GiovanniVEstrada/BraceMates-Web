@@ -26,6 +26,7 @@
   --border-on-dark-pill: rgba(205, 191, 168, 0.45); /* outlined pills on dark (footer socials) */
   --border-on-dark-strong: rgba(205, 191, 168, 0.6); /* outlined call pill on dark */
   --hero-overlay: rgba(33, 29, 24, 0.6); /* over the hero photo; tune 0.45-0.7 */
+  --menu-backdrop: rgba(33, 29, 24, 0.55); /* dims the page behind the open mobile menu */
 
   /* Values taken from the reference inline styles */
   --white: #ffffff; /* hero and CTA-band H1 */

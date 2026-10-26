@@ -54,6 +54,7 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
     </div>
   </div>
 </header>
+<div class="menu-backdrop" data-menu-backdrop aria-hidden="true"></div>
 
 <style>
   .site-header {
@@ -65,6 +66,8 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
     /* An open mobile menu taller than a short phone screen scrolls inside the header. */
     max-height: 100dvh;
     overflow-y: auto;
+    /* Scrolling inside the open menu must not scroll the page (which would close the menu). */
+    overscroll-behavior: contain;
   }
   .site-header__inner {
     display: flex;
@@ -107,19 +110,44 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
     display: block;
   }
 
-  /* Mobile menu panel */
+  /* Mobile menu panel. Closed = collapsed and hidden (visibility keeps its links out of the tab order);
+     open = expanded. Both directions animate under [menu-ease] below. */
   .site-nav {
     order: 3;
     flex-basis: calc(100% + 30px);
     margin: 0 -10px 0 -20px;
-    display: none;
+    display: flex;
     flex-direction: column;
     gap: 2px;
-    padding: 8px 12px 20px;
-    border-top: 1px solid var(--nav-divider);
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 12px;
+    border-top: 1px solid transparent;
+    opacity: 0;
+    visibility: hidden;
   }
   .site-header.is-open .site-nav {
-    display: flex;
+    max-height: 480px; /* a little taller than the menu (~390px) so the close does not pause at the start */
+    padding: 8px 12px 20px;
+    border-top-color: var(--nav-divider);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Dimmed page behind the open menu; tapping it closes the menu. Sits below the header (z-index 50). */
+  .menu-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: var(--menu-backdrop);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .site-header.is-open + .menu-backdrop {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
   .site-nav__link {
     display: flex;
@@ -154,21 +182,35 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
         color var(--dur-fast) var(--ease),
         background-color var(--dur-fast) var(--ease);
     }
-    /* [menu-ease] Mobile menu panel eases in when opened (the panel is display:none when closed) */
+    /* [menu-ease] Mobile menu panel and backdrop ease open and closed. `visibility` flips after the
+       close animation finishes (delayed on close, immediate on open). */
     @media (max-width: 767.98px) {
-      .site-header.is-open .site-nav {
-        animation: menu-in 200ms var(--ease) both;
+      .site-nav {
+        transition:
+          max-height 300ms var(--ease),
+          padding 300ms var(--ease),
+          opacity 200ms var(--ease),
+          border-color 300ms var(--ease),
+          visibility 0s linear 300ms;
       }
-    }
-  }
-  @keyframes menu-in {
-    from {
-      opacity: 0;
-      transform: translateY(-8px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+      .site-header.is-open .site-nav {
+        transition:
+          max-height 300ms var(--ease),
+          padding 300ms var(--ease),
+          opacity 250ms var(--ease) 50ms,
+          border-color 300ms var(--ease),
+          visibility 0s;
+      }
+      .menu-backdrop {
+        transition:
+          opacity 250ms var(--ease),
+          visibility 0s linear 250ms;
+      }
+      .site-header.is-open + .menu-backdrop {
+        transition:
+          opacity 250ms var(--ease),
+          visibility 0s;
+      }
     }
   }
 
@@ -184,6 +226,9 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
     .site-nav :global(.site-nav__call) {
       display: none;
     }
+    .menu-backdrop {
+      display: none;
+    }
     .site-nav {
       order: 2;
       display: flex;
@@ -195,6 +240,11 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
       margin: 0;
       padding: 0;
       border-top: 0;
+      /* Undo the mobile collapsed state: the desktop nav is always visible. */
+      max-height: none;
+      overflow: visible;
+      opacity: 1;
+      visibility: visible;
     }
     .site-nav__link {
       min-height: 44px;
@@ -245,15 +295,30 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
   const header = document.querySelector<HTMLElement>('[data-site-header]');
   const button = header?.querySelector<HTMLButtonElement>('[data-menu-button]');
   const nav = header?.querySelector<HTMLElement>('#site-nav');
+  const backdrop = document.querySelector<HTMLElement>('[data-menu-backdrop]');
 
   if (header && button && nav) {
+    let openedAtY = 0;
     const setOpen = (open: boolean) => {
+      if (open) openedAtY = window.scrollY;
       header.classList.toggle('is-open', open);
       button.setAttribute('aria-expanded', String(open));
       button.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     };
 
     button.addEventListener('click', () => setOpen(button.getAttribute('aria-expanded') !== 'true'));
+
+    // Close when the dimmed page behind the menu is tapped
+    backdrop?.addEventListener('click', () => setOpen(false));
+
+    // Close when the page starts scrolling (a small threshold ignores finger jitter)
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (header.classList.contains('is-open') && Math.abs(window.scrollY - openedAtY) > 24) setOpen(false);
+      },
+      { passive: true },
+    );
 
     // Close on link click
     nav.addEventListener('click', (event) => {
