@@ -153,7 +153,7 @@ Photo placeholder tones (until real photos exist): `#B3B297`, `#C2B39B`, `#DCCDB
 
 **Header** (`--walnut` bg)
 - **Desktop:** wordmark left; nav (Home, About, Services, Gallery, FAQ, Contact) with the current page as a translucent pill (`aria-current="page"`); right side has an outlined "Call [PHONE]" `tel:` pill with a phone icon.
-- **Mobile:** wordmark, a 44px phone icon button that links to `/contact` (`aria-label="Contact"`; owner decision, so visitors see all contact options instead of dialing straight away) and a 44px menu button (`aria-expanded`, `aria-controls`). The menu opens a panel below the header bar with large nav links (48px rows) and a full-width "Call [PHONE]" outline pill. Close it on Escape and on link click.
+- **Mobile:** wordmark, a 44px envelope (mail) icon button that links to `/contact` (`aria-label="Contact"`; owner decision, so visitors see all contact options instead of dialing straight away) and a 44px menu button (`aria-expanded`, `aria-controls`). The menu opens a panel below the header bar with large nav links (48px rows) and a full-width "Call [PHONE]" outline pill. Close it on Escape and on link click.
 
 **Footer** (`--espresso` bg): wordmark plus the one-liner "In-home dog training in [CITY / AREA]. Practical help for you and your dog, together." Then columns:
 - **Contact:** phone, email, "Serving [CITY / AREA] and nearby"
