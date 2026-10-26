@@ -13,7 +13,7 @@ interface Props {
 const { service, href = '/services' } = Astro.props;
 ---
 
-<article class="card" data-reveal>
+<article class="card" data-reveal data-tilt>
   <p class="card__tag">{service.homeTag}</p>
   <h3 class="card__name">{service.name}</h3>
   <p class="card__summary">{service.summary}</p>
@@ -85,20 +85,7 @@ const { service, href = '/services' } = Astro.props;
     color: var(--linen-light);
   }
 
-  /* Motion: hover lift on hover-capable devices only */
-  @media (prefers-reduced-motion: no-preference) {
-    .card {
-      transition:
-        transform var(--dur) var(--ease),
-        box-shadow var(--dur) var(--ease);
-    }
-    @media (hover: hover) {
-      .card:hover {
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-card-hover);
-      }
-    }
-  }
+  /* Hover motion (tilt, glare, shadow) comes from [data-tilt] in global.css */
 
   /* Mobile (HomeMobile): compact card, inline price */
   @media (max-width: 767.98px) {

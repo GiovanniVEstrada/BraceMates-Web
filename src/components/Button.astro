@@ -177,6 +177,18 @@ const classes = ['btn', `btn--${variant}`, `btn--${size}`, { 'btn--block': block
         box-shadow: var(--shadow-btn-hover);
       }
     }
+    /* Trailing arrow nudges right on hover/focus (the icon after the label; leading icons are untouched) */
+    .btn > span + :global(svg) {
+      transition: transform var(--dur-fast) var(--ease);
+    }
+    @media (hover: hover) {
+      .btn:hover > span + :global(svg) {
+        transform: translateX(3px);
+      }
+    }
+    .btn:focus-visible > span + :global(svg) {
+      transform: translateX(3px);
+    }
     .btn--primary:active {
       transform: translateY(0);
       box-shadow: none;

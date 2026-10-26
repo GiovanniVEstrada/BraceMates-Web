@@ -38,6 +38,8 @@
   --shadow-card-hover: 0 2px 4px rgba(33, 29, 24, 0.08), 0 14px 32px rgba(33, 29, 24, 0.12); /* card hover lift */
   --shadow-btn-hover: 0 6px 16px rgba(33, 29, 24, 0.22); /* primary button hover lift */
 
+  --glare: rgba(255, 255, 255, 0.12); /* card-tilt highlight */
+
   /* Motion (only used inside prefers-reduced-motion: no-preference) */
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   --dur-fast: 150ms;
@@ -319,6 +321,42 @@ p {
     :root {
       interpolate-size: allow-keywords;
     }
+  }
+}
+
+/* [card-tilt] Service cards and gallery tiles (data-tilt) lean toward a mouse pointer.
+   Variables are set by src/scripts/tilt.ts. Replaces the old hover lift on these cards.
+   Tune the amount via MAX in tilt.ts, the lift via --lift, the depth via perspective().
+   To turn off, delete this block (and the import in BaseLayout). */
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  [data-tilt] {
+    position: relative;
+    transform: perspective(900px) rotateX(var(--tilt-y, 0deg)) rotateY(var(--tilt-x, 0deg)) translateY(var(--lift, 0));
+    transition:
+      transform 400ms var(--ease),
+      box-shadow var(--dur) var(--ease);
+  }
+  [data-tilt]::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), var(--glare), transparent 60%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--dur) var(--ease);
+  }
+  [data-tilt]:hover {
+    --lift: -2px;
+    z-index: 2;
+    will-change: transform;
+    box-shadow: var(--shadow-card-hover);
+    transition:
+      transform 120ms linear,
+      box-shadow var(--dur) var(--ease);
+  }
+  [data-tilt]:hover::after {
+    opacity: 1;
   }
 }
 

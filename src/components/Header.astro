@@ -206,6 +206,38 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
     .site-nav__link[aria-current='page'] {
       font-weight: 600;
     }
+    /* Desktop: hover/focus shows a sliding underline instead of the hover pill (current page keeps its pill) */
+    .site-nav__link {
+      position: relative;
+    }
+    .site-nav__link:not([aria-current='page']):hover {
+      background: transparent;
+    }
+    .site-nav__link:not([aria-current='page'])::after {
+      content: '';
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 8px;
+      height: 2px;
+      border-radius: 1px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+    .site-nav__link:not([aria-current='page']):focus-visible::after {
+      transform: scaleX(1);
+    }
+    @media (hover: hover) {
+      .site-nav__link:not([aria-current='page']):hover::after {
+        transform: scaleX(1);
+      }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .site-nav__link::after {
+        transition: transform var(--dur) var(--ease);
+      }
+    }
   }
 </style>
 

@@ -98,21 +98,43 @@ const year = new Date().getFullYear();
   .footer__link:hover {
     color: var(--linen-light);
   }
-  .footer__link--tap {
-    display: flex;
-    align-items: center;
-    min-height: 44px;
-    text-underline-offset: 4px;
-  }
+  /* Text links: inline-flex so the sliding underline matches the text width; 44px tall tap target */
+  .footer__link--tap,
   .footer__link--plain {
-    display: flex;
+    position: relative;
+    display: inline-flex;
     align-items: center;
     min-height: 44px;
     text-decoration: none;
   }
-  .footer__link--plain:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
+  .footer__link--tap::after,
+  .footer__link--plain::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 9px;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  .footer__link--tap:focus-visible::after,
+  .footer__link--plain:focus-visible::after {
+    transform: scaleX(1);
+  }
+  /* Touch devices have no hover: keep links underlined at rest */
+  @media (hover: none) {
+    .footer__link--tap::after,
+    .footer__link--plain::after {
+      transform: scaleX(1);
+    }
+  }
+  @media (hover: hover) {
+    .footer__link--tap:hover::after,
+    .footer__link--plain:hover::after {
+      transform: scaleX(1);
+    }
   }
   .footer__explore {
     display: grid;
@@ -162,6 +184,9 @@ const year = new Date().getFullYear();
         color var(--dur-fast) var(--ease),
         background-color var(--dur-fast) var(--ease),
         border-color var(--dur-fast) var(--ease);
+    }
+    .footer__link::after {
+      transition: transform var(--dur) var(--ease);
     }
   }
 
