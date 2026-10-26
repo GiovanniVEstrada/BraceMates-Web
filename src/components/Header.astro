@@ -2,7 +2,7 @@
 /**
  * Site header. Current page is detected from the URL (aria-current="page").
  * Desktop: wordmark, nav, outlined "Call [PHONE]" pill.
- * Mobile: wordmark, 44px phone button, 44px menu button; menu panel opens below the bar.
+ * Mobile: wordmark, 44px phone-icon button (links to /contact), 44px menu button; menu panel opens below the bar.
  */
 import { nav, site, telHref } from '../data/site';
 import Wordmark from './Wordmark.astro';
@@ -46,7 +46,7 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
       >
         Call {site.phone}
       </Button>
-      <a href={telHref()} class="icon-btn site-header__call-mobile" aria-label={`Call ${site.phone}`}>
+      <a href="/contact" class="icon-btn site-header__call-mobile" aria-label="Contact">
         <Icon name="phone" size={22} />
       </a>
       <button
