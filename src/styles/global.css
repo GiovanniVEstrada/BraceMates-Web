@@ -79,6 +79,14 @@ html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   background: var(--espresso);
+  /* The header is sticky: keep keyboard focus and anchor jumps from landing underneath it. */
+  scroll-padding-top: 80px;
+}
+
+@media (min-width: 768px) {
+  html {
+    scroll-padding-top: 104px;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {

@@ -66,8 +66,14 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
 
 <style>
   .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
     background: var(--walnut);
     color: var(--linen);
+    /* An open mobile menu taller than a short phone screen scrolls inside the header. */
+    max-height: 100dvh;
+    overflow-y: auto;
   }
   .site-header__inner {
     display: flex;
