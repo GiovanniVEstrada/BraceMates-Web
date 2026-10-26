@@ -289,17 +289,6 @@ p {
 /* Motion. Everything below is CSS-only and sits inside prefers-reduced-motion: no-preference.
    To turn one effect off, delete its block (labelled below). */
 @media (prefers-reduced-motion: no-preference) {
-  /* [page-transitions] Cross-document view transitions: short crossfade between pages.
-     Header and sticky CTA get their own names in their components so they stay put. */
-  @view-transition {
-    navigation: auto;
-  }
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
-    animation-duration: 200ms;
-    animation-timing-function: var(--ease);
-  }
-
   /* [scroll-reveal] Fade/slide up as an element enters the viewport (add data-reveal to it).
      Uses `translate` (not `transform`) so it never fights hover transforms.
      Unsupported browsers skip this block and show everything normally. */

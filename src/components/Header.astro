@@ -154,10 +154,6 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    /* [header-vt] Keep the header fixed across page transitions */
-    .site-header {
-      view-transition-name: header;
-    }
     .icon-btn,
     .site-nav__link {
       transition:
