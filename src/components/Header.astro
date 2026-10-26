@@ -1,7 +1,7 @@
 ---
 /**
  * Site header. Current page is detected from the URL (aria-current="page").
- * Desktop: wordmark, nav, outlined "Call [PHONE]" pill.
+ * Desktop: wordmark and nav only (no call pill; owner decision).
  * Mobile: wordmark, 44px envelope-icon button (links to /contact), 44px menu button; menu panel opens below the bar.
  */
 import { nav, site, telHref } from '../data/site';
@@ -37,15 +37,6 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
     </nav>
 
     <div class="site-header__actions">
-      <Button
-        href={telHref()}
-        variant="outline-dark"
-        icon="phone"
-        iconPosition="start"
-        class="site-header__call-desktop"
-      >
-        Call {site.phone}
-      </Button>
       <a href="/contact" class="icon-btn site-header__call-mobile" aria-label="Contact">
         <Icon name="mail" size={22} />
       </a>
@@ -105,9 +96,6 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
   .icon-btn:hover {
     color: var(--linen-light);
     background: var(--nav-pill-bg);
-  }
-  .site-header__actions :global(.site-header__call-desktop) {
-    display: none;
   }
   .icon-close {
     display: none;
@@ -191,16 +179,10 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
       gap: 12px 32px;
       padding: 16px var(--gutter);
     }
-    .site-header__actions {
-      order: 3;
-    }
-    .icon-btn.site-header__call-mobile,
-    .site-header__menu,
+    /* Phone-only buttons (contact icon, menu toggle) and the menu's call pill are hidden on desktop. */
+    .site-header__actions,
     .site-nav :global(.site-nav__call) {
       display: none;
-    }
-    .site-header__actions :global(.site-header__call-desktop) {
-      display: inline-flex;
     }
     .site-nav {
       order: 2;
