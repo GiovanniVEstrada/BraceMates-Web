@@ -63,11 +63,6 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
     z-index: 50;
     background: var(--walnut);
     color: var(--linen);
-    /* An open mobile menu taller than a short phone screen scrolls inside the header. */
-    max-height: 100dvh;
-    overflow-y: auto;
-    /* Scrolling inside the open menu must not scroll the page (which would close the menu). */
-    overscroll-behavior: contain;
   }
   .site-header__inner {
     display: flex;
@@ -110,24 +105,34 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
     display: block;
   }
 
-  /* Mobile menu panel. Closed = collapsed and hidden (visibility keeps its links out of the tab order);
-     open = expanded. Both directions animate under [menu-ease] below. */
+  /* Mobile menu panel. It overlays the page just below the header bar (position: absolute), so opening it
+     never changes the page layout; otherwise scroll anchoring would shift the scroll position and the
+     close-on-scroll rule would shut the menu as soon as it opened. Closed = collapsed and hidden
+     (visibility keeps its links out of the tab order); open = expanded. Both directions animate under
+     [menu-ease] below. */
   .site-nav {
-    order: 3;
-    flex-basis: calc(100% + 30px);
-    margin: 0 -10px 0 -20px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
     display: flex;
     flex-direction: column;
     gap: 2px;
     max-height: 0;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Scrolling inside a tall menu must not scroll the page behind it (which would close the menu). */
+    overscroll-behavior: contain;
     padding: 0 12px;
+    background: var(--walnut);
     border-top: 1px solid transparent;
     opacity: 0;
     visibility: hidden;
   }
   .site-header.is-open .site-nav {
-    max-height: 480px; /* a little taller than the menu (~390px) so the close does not pause at the start */
+    /* a little taller than the menu (~390px) so the close does not pause at the start;
+       never taller than the space under the header on short phones (the menu then scrolls inside itself) */
+    max-height: min(480px, calc(100dvh - 64px));
     padding: 8px 12px 20px;
     border-top-color: var(--nav-divider);
     opacity: 1;
@@ -231,6 +236,7 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
     }
     .site-nav {
       order: 2;
+      position: static;
       display: flex;
       flex-direction: row;
       flex-basis: auto;
@@ -240,6 +246,7 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
       margin: 0;
       padding: 0;
       border-top: 0;
+      background: transparent;
       /* Undo the mobile collapsed state: the desktop nav is always visible. */
       max-height: none;
       overflow: visible;
@@ -299,8 +306,12 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
 
   if (header && button && nav) {
     let openedAtY = 0;
+    let openedAt = 0;
     const setOpen = (open: boolean) => {
-      if (open) openedAtY = window.scrollY;
+      if (open) {
+        openedAtY = window.scrollY;
+        openedAt = performance.now();
+      }
       header.classList.toggle('is-open', open);
       button.setAttribute('aria-expanded', String(open));
       button.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
@@ -311,11 +322,13 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
     // Close when the dimmed page behind the menu is tapped
     backdrop?.addEventListener('click', () => setOpen(false));
 
-    // Close when the page starts scrolling (a small threshold ignores finger jitter)
+    // Close when the page starts scrolling. A small threshold ignores finger jitter, and scroll events in
+    // the first 400ms after opening (layout settling, mobile browser toolbars resizing) are ignored.
     window.addEventListener(
       'scroll',
       () => {
-        if (header.classList.contains('is-open') && Math.abs(window.scrollY - openedAtY) > 24) setOpen(false);
+        if (!header.classList.contains('is-open') || performance.now() - openedAt < 400) return;
+        if (Math.abs(window.scrollY - openedAtY) > 24) setOpen(false);
       },
       { passive: true },
     );
