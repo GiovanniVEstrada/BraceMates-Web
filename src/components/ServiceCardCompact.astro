@@ -13,7 +13,7 @@ interface Props {
 const { service, href = '/services' } = Astro.props;
 ---
 
-<article class="card" data-reveal data-tilt>
+<article class="card" data-reveal data-tilt data-spotlight>
   <p class="card__tag">{service.homeTag}</p>
   <h3 class="card__name">{service.name}</h3>
   <p class="card__summary">{service.summary}</p>

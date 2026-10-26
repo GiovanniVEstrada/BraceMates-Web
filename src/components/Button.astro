@@ -194,5 +194,16 @@ const classes = ['btn', `btn--${variant}`, `btn--${size}`, { 'btn--block': block
       box-shadow: none;
       transition-duration: 80ms;
     }
+    /* Touch press feedback (all variants); placed last so it wins over the primary :active rule */
+    @media (hover: none) {
+      .btn {
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0.12);
+      }
+      .btn:active {
+        transform: scale(0.98);
+        box-shadow: none;
+        transition-duration: 120ms;
+      }
+    }
   }
 </style>

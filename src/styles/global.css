@@ -316,6 +316,57 @@ p {
     }
   }
 
+  /* [press-feedback] Touch devices: cards and tiles (data-tilt) dip slightly while pressed.
+     Only inside (hover: none), so desktop mouse clicks never get it. Uses `transform`;
+     scroll-reveal uses `translate` and the spotlight uses `scale`, so nothing conflicts.
+     Tune the dip via --press-scale. Buttons have their own rule in Button.astro. */
+  @media (hover: none) {
+    [data-tilt] {
+      --press-scale: 0.98;
+      transition:
+        transform 250ms var(--ease),
+        box-shadow 250ms var(--ease);
+      -webkit-tap-highlight-color: rgba(255, 255, 255, 0.12);
+    }
+    [data-tilt]:active {
+      transform: scale(var(--press-scale));
+      box-shadow: var(--shadow-card);
+      transition-duration: 120ms;
+    }
+  }
+
+  /* [scroll-spotlight] Phones, service cards only (data-spotlight): the card grows from 0.97 to 1
+     and brightens from 0.92 to 1 as it nears the vertical middle, easing back at the edges.
+     Uses `scale` + `filter` (never opacity/translate) so it runs alongside scroll-reveal.
+     It holds full strength across the middle half of the travel, so cards at the very top
+     or bottom of a page are not dimmed. Max scale is 1, so no overflow past the gutter.
+     Tune: the 0.97 and 0.92 values below. To turn off, delete this block. */
+  @supports (animation-timeline: view()) {
+    @keyframes spotlight {
+      0%,
+      100% {
+        scale: 0.97;
+        filter: brightness(0.92);
+      }
+      25%,
+      75% {
+        scale: 1;
+        filter: brightness(1);
+      }
+    }
+    @media (max-width: 767.98px) {
+      [data-spotlight][data-reveal] {
+        animation:
+          reveal-up linear both,
+          spotlight linear both;
+        animation-timeline: view(), view();
+        animation-range:
+          entry 0% entry 35%,
+          cover 0% cover 100%;
+      }
+    }
+  }
+
   /* [faq-height] Animate FAQ answer height where the browser can */
   @supports (interpolate-size: allow-keywords) and selector(::details-content) {
     :root {

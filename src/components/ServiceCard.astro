@@ -16,7 +16,7 @@ const { service, href = '/contact' } = Astro.props;
 const headingId = `svc-${service.slug}`;
 ---
 
-<article class="card" aria-labelledby={headingId} data-reveal data-tilt>
+<article class="card" aria-labelledby={headingId} data-reveal data-tilt data-spotlight>
   <p class="card__tag">{service.tag}</p>
   <h2 id={headingId} class="card__name">{service.name}</h2>
   <p class="card__desc">{service.description}</p>
