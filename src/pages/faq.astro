@@ -132,6 +132,59 @@ import { site, telHref, mailHref } from '../data/site';
     font-size: 16px;
   }
 
+  /* Motion */
+  @media (prefers-reduced-motion: no-preference) {
+    /* [faq-icon] Plus and minus are stacked and crossfade/rotate instead of swapping instantly */
+    .qa__toggle {
+      position: relative;
+    }
+    .qa__toggle :global(.qa__plus),
+    .qa__toggle :global(.qa__minus),
+    .qa[open] .qa__toggle :global(.qa__plus),
+    .qa[open] .qa__toggle :global(.qa__minus) {
+      display: block;
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      transition:
+        opacity var(--dur) var(--ease),
+        transform var(--dur) var(--ease);
+    }
+    .qa__toggle :global(.qa__plus) {
+      opacity: 1;
+      transform: rotate(0deg);
+    }
+    .qa__toggle :global(.qa__minus) {
+      opacity: 0;
+      transform: rotate(-90deg);
+    }
+    .qa[open] .qa__toggle :global(.qa__plus) {
+      opacity: 0;
+      transform: rotate(90deg);
+    }
+    .qa[open] .qa__toggle :global(.qa__minus) {
+      opacity: 1;
+      transform: rotate(0deg);
+    }
+    .qa summary {
+      transition: color var(--dur-fast) var(--ease);
+    }
+
+    /* [faq-height] Answer height animates open/close where supported; otherwise native behavior */
+    @supports (interpolate-size: allow-keywords) and selector(::details-content) {
+      .qa::details-content {
+        block-size: 0;
+        overflow: clip;
+        transition:
+          block-size var(--dur) var(--ease),
+          content-visibility var(--dur) allow-discrete;
+      }
+      .qa[open]::details-content {
+        block-size: auto;
+      }
+    }
+  }
+
   .ask__inner {
     display: flex;
     flex-direction: column;

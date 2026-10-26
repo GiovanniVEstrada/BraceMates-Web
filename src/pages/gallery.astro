@@ -68,7 +68,7 @@ const widthsFor = (span?: Span) => (wideish(span) ? [400, 800, 1200] : [200, 400
     <ul class="container grid" aria-label="Photo gallery">
       {
         tiles.map((t) => (
-          <li class:list={['tile', t.span && `tile--${t.span}`]}>
+          <li class:list={['tile', t.span && `tile--${t.span}`]} data-reveal>
             {t.photo ? (
               <Image
                 src={t.photo}
@@ -121,6 +121,8 @@ const widthsFor = (span?: Span) => (wideish(span) ? [400, 800, 1200] : [200, 400
   }
   .tile {
     min-width: 0;
+    overflow: hidden;
+    border-radius: 16px;
   }
   .tile :global(img) {
     display: block;
@@ -138,6 +140,18 @@ const widthsFor = (span?: Span) => (wideish(span) ? [400, 800, 1200] : [200, 400
   }
   .tile--wide {
     grid-column: span 2;
+  }
+
+  /* Motion: slow image zoom on hover (image is clipped by the tile) */
+  @media (prefers-reduced-motion: no-preference) {
+    .tile :global(img) {
+      transition: transform var(--dur-slow) var(--ease);
+    }
+    @media (hover: hover) {
+      .tile:hover :global(img) {
+        transform: scale(1.04);
+      }
+    }
   }
 
   @media (min-width: 768px) {

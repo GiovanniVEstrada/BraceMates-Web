@@ -124,6 +124,22 @@ const [town1, town2, town3] = site.serviceArea.towns;
     border-color: var(--od-green);
   }
 
+  /* Motion: link tiles lift on hover-capable devices only */
+  @media (prefers-reduced-motion: no-preference) {
+    a.tile {
+      transition:
+        transform var(--dur) var(--ease),
+        box-shadow var(--dur) var(--ease),
+        border-color var(--dur-fast) var(--ease);
+    }
+    @media (hover: hover) {
+      a.tile:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-card-hover);
+      }
+    }
+  }
+
   /* Mobile: service area is a full-bleed band, as in the reference */
   .area {
     display: flex;

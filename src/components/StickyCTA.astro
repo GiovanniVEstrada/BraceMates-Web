@@ -32,6 +32,12 @@ const label = onContact ? 'Call' : 'Book a free call';
     padding: 12px 24px;
     gap: 10px;
   }
+  @media (prefers-reduced-motion: no-preference) {
+    /* [sticky-vt] Keep the bar fixed across page transitions */
+    .sticky-cta {
+      view-transition-name: sticky-cta;
+    }
+  }
   @media (min-width: 768px) {
     .sticky-cta {
       display: none;

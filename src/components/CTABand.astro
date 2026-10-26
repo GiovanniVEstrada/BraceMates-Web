@@ -29,7 +29,7 @@ const {
 ---
 
 <section aria-labelledby={id} class:list={['cta', `cta--${tone}`]}>
-  <div class="cta__inner">
+  <div class="cta__inner" data-reveal>
     <h2 id={id} class="cta__title">{title}</h2>
     <p class="cta__body"><slot /></p>
     <div class="cta__actions">

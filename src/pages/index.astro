@@ -48,7 +48,7 @@ import { services, servicesCopy } from '../data/services';
 
   <!-- Problems -->
   <section class="problems" aria-labelledby="problems-title">
-    <div class="container problems__grid">
+    <div class="container problems__grid" data-reveal>
       <div class="stack-head">
         <Eyebrow>Sound familiar?</Eyebrow>
         <h2 id="problems-title">Most “problem dogs” just haven’t been shown another way yet.</h2>
@@ -63,7 +63,7 @@ import { services, servicesCopy } from '../data/services';
   <!-- Services preview -->
   <section class="services" aria-labelledby="services-title">
     <div class="container services__wrap">
-      <div class="services__head">
+      <div class="services__head" data-reveal>
         <div class="stack-head services__intro">
           <Eyebrow>{servicesCopy.homePreview.eyebrow}</Eyebrow>
           <h2 id="services-title">{servicesCopy.homePreview.title}</h2>
@@ -81,7 +81,7 @@ import { services, servicesCopy } from '../data/services';
   <!-- How it works -->
   <section class="how band-dark" aria-labelledby="how-title">
     <div class="container how__wrap">
-      <div class="stack-head how__head">
+      <div class="stack-head how__head" data-reveal>
         <Eyebrow>{howItWorks.eyebrow}</Eyebrow>
         <h2 id="how-title">{howItWorks.title}</h2>
       </div>
@@ -95,7 +95,7 @@ import { services, servicesCopy } from '../data/services';
   <!-- Testimonials (placeholders only) -->
   <section class="reviews" aria-labelledby="reviews-title">
     <div class="container reviews__wrap">
-      <div class="reviews__head">
+      <div class="reviews__head" data-reveal>
         <div class="stack-head">
           <Eyebrow>Kind words</Eyebrow>
           <h2 id="reviews-title">What dog owners say</h2>
@@ -276,6 +276,65 @@ import { services, servicesCopy } from '../data/services';
     padding: 0 20px;
     font-size: 14px;
     color: var(--text-muted);
+  }
+
+  /* ---------- Motion ---------- */
+  @media (prefers-reduced-motion: no-preference) {
+    /* [hero-intro] Text block fades up in sequence. The h1 animates transform only, so it is
+       always visible and LCP is not delayed. The photo is never faded: it only settles (scale). */
+    .hero__inner > :global(*) {
+      animation: hero-up 600ms var(--ease) both;
+    }
+    .hero__inner > :global(:nth-child(1)) {
+      animation-delay: 0ms;
+    }
+    .hero__inner > :global(:nth-child(2)) {
+      animation-name: hero-rise;
+      animation-delay: 80ms;
+    }
+    .hero__inner > :global(:nth-child(3)) {
+      animation-delay: 160ms;
+    }
+    .hero__inner > :global(:nth-child(4)) {
+      animation-delay: 240ms;
+    }
+    .hero__img {
+      animation: hero-settle 1400ms var(--ease) both;
+    }
+    .hero__call {
+      transition: opacity var(--dur-fast) var(--ease);
+    }
+    @media (hover: hover) {
+      .hero__call:hover {
+        opacity: 0.85;
+      }
+    }
+  }
+  @keyframes hero-up {
+    from {
+      opacity: 0.01;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes hero-rise {
+    from {
+      transform: translateY(16px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  @keyframes hero-settle {
+    from {
+      transform: scale(1.05);
+    }
+    to {
+      transform: scale(1);
+    }
   }
 
   /* ---------- Desktop ---------- */

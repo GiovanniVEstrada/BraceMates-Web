@@ -18,7 +18,7 @@ const { steps = howItWorks.steps } = Astro.props;
 <ol class="steps">
   {
     steps.map((step, i) => (
-      <li class="step">
+      <li class="step" data-reveal>
         <span class="step__num" aria-hidden="true">{i + 1}</span>
         <h3 class="step__title">{step.title}</h3>
         <p>{step.body}</p>

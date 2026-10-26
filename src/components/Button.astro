@@ -159,4 +159,28 @@ const classes = ['btn', `btn--${variant}`, `btn--${size}`, { 'btn--block': block
     color: var(--linen-light);
     background: var(--nav-pill-bg);
   }
+
+  /* Motion */
+  @media (prefers-reduced-motion: no-preference) {
+    .btn {
+      transition:
+        color var(--dur-fast) var(--ease),
+        background-color var(--dur-fast) var(--ease),
+        border-color var(--dur-fast) var(--ease),
+        filter var(--dur-fast) var(--ease),
+        transform var(--dur-fast) var(--ease),
+        box-shadow var(--dur) var(--ease);
+    }
+    @media (hover: hover) {
+      .btn--primary:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-btn-hover);
+      }
+    }
+    .btn--primary:active {
+      transform: translateY(0);
+      box-shadow: none;
+      transition-duration: 80ms;
+    }
+  }
 </style>

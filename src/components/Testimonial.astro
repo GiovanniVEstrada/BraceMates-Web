@@ -13,7 +13,7 @@ interface Props {
 const { quote, name, location, placeholder = true } = Astro.props;
 ---
 
-<figure class:list={['t', { 't--placeholder': placeholder }]}>
+<figure class:list={['t', { 't--placeholder': placeholder }]} data-reveal="md">
   <span class="t__mark" aria-hidden="true">“</span>
   <blockquote class="t__quote">{quote}</blockquote>
   <figcaption class="t__cap">
@@ -82,6 +82,21 @@ const { quote, name, location, placeholder = true } = Astro.props;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
+  }
+
+  /* Motion: hover lift on hover-capable devices only */
+  @media (prefers-reduced-motion: no-preference) {
+    .t {
+      transition:
+        transform var(--dur) var(--ease),
+        box-shadow var(--dur) var(--ease);
+    }
+    @media (hover: hover) {
+      .t:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-card-hover);
+      }
+    }
   }
 
   /* Mobile (HomeMobile): 300px snap card, stacked caption */

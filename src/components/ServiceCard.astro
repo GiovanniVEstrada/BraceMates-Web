@@ -16,7 +16,7 @@ const { service, href = '/contact' } = Astro.props;
 const headingId = `svc-${service.slug}`;
 ---
 
-<article class="card" aria-labelledby={headingId}>
+<article class="card" aria-labelledby={headingId} data-reveal>
   <p class="card__tag">{service.tag}</p>
   <h2 id={headingId} class="card__name">{service.name}</h2>
   <p class="card__desc">{service.description}</p>
@@ -118,5 +118,20 @@ const headingId = `svc-${service.slug}`;
     font-size: 28px;
     font-weight: 800;
     color: var(--walnut);
+  }
+
+  /* Motion: hover lift on hover-capable devices only */
+  @media (prefers-reduced-motion: no-preference) {
+    .card {
+      transition:
+        transform var(--dur) var(--ease),
+        box-shadow var(--dur) var(--ease);
+    }
+    @media (hover: hover) {
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-card-hover);
+      }
+    }
   }
 </style>

@@ -13,7 +13,7 @@ interface Props {
 const { service, href = '/services' } = Astro.props;
 ---
 
-<article class="card">
+<article class="card" data-reveal>
   <p class="card__tag">{service.homeTag}</p>
   <h3 class="card__name">{service.name}</h3>
   <p class="card__summary">{service.summary}</p>
@@ -83,6 +83,21 @@ const { service, href = '/services' } = Astro.props;
   }
   .card__link:hover {
     color: var(--linen-light);
+  }
+
+  /* Motion: hover lift on hover-capable devices only */
+  @media (prefers-reduced-motion: no-preference) {
+    .card {
+      transition:
+        transform var(--dur) var(--ease),
+        box-shadow var(--dur) var(--ease);
+    }
+    @media (hover: hover) {
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-card-hover);
+      }
+    }
   }
 
   /* Mobile (HomeMobile): compact card, inline price */
