@@ -4,7 +4,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Eyebrow from '../components/Eyebrow.astro';
 import aboutPhoto from '../assets/images/photo-8-man-three-dogs-steps.png';
 import CTABand from '../components/CTABand.astro';
-import Icon from '../components/Icon.astro';
 import { site, about } from '../data/site';
 
 const s = about.storyPlaceholders;
@@ -92,31 +91,6 @@ const principles = [
     </div>
   </section>
 
-  <section class="section" aria-labelledby="creds-title">
-    <div class="container stack">
-      <div class="head">
-        <Eyebrow>Certifications</Eyebrow>
-        <h2 id="creds-title">Training &amp; credentials</h2>
-        <p>Anyone can call themselves a dog trainer, so it’s fair to ask. Here’s what I bring:</p>
-      </div>
-      <ul class="creds">
-        {
-          about.credentials.map((c) => (
-            <li>
-              <span class="creds__check" aria-hidden="true">
-                <Icon name="check" size={16} strokeWidth={2.5} />
-              </span>
-              <span class="creds__text">
-                <strong>{c.name}</strong>
-                <span>{c.detail}</span>
-              </span>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
-
   <CTABand title="Want to see if we’re a good fit?" tone="walnut" showCall={false}>
     The first call is free, and there’s no obligation. Tell me about your dog and we’ll go from there.
   </CTABand>
@@ -194,44 +168,6 @@ const principles = [
     font-size: 16px;
   }
 
-  .creds {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 10px;
-  }
-  .creds li {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 16px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-card-sm);
-    background: var(--linen-light);
-  }
-  .creds__check {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: 32px;
-    height: 32px;
-    border-radius: var(--radius-pill);
-    background: var(--od-green);
-    color: var(--linen-light);
-  }
-  .creds__text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.4;
-  }
-  .creds__text strong {
-    color: var(--espresso);
-  }
-  .creds__text span {
-    font-size: 15px;
-    color: var(--text-muted);
-  }
-
   @media (min-width: 768px) {
     .intro-wrap {
       padding-top: 88px;
@@ -284,13 +220,6 @@ const principles = [
     }
     .principles p {
       font-size: 17px;
-    }
-    .creds {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-    .creds li {
-      padding: 20px;
     }
   }
 </style>

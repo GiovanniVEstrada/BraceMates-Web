@@ -122,7 +122,7 @@ export const testimonialPlaceholders = [
   },
 ] as const;
 
-/** About page placeholders (bracketed story details and credentials). */
+/** About page placeholders (bracketed story details). The credentials section was removed at the owner's request. */
 export const about = {
   storyPlaceholders: {
     dogName: '[Dog’s name]',
@@ -131,11 +131,4 @@ export const about = {
     background:
       '[Add any relevant background — shelter work, fostering, an apprenticeship, a past career that shapes how you teach.]',
   },
-  /** Four checklist tiles. Insurance is the fourth. */
-  credentials: [
-    { name: '[Certification — e.g., CPDT-KA]', detail: '[Issuing organization, year]' },
-    { name: '[Second certification or course]', detail: '[Issuing organization, year]' },
-    { name: '[Pet first aid & CPR]', detail: '[Provider, year]' },
-    { name: '[Insured]', detail: '[Insurance provider]' },
-  ],
 } as const;

@@ -182,7 +182,7 @@ Section order and copy come from the reference files. Desktop notes for inner pa
 6. **Final CTA** (`--walnut` band): centered H2, paragraph, primary CTA, "or call" link.
 
 **About** (`/about`). Reference: `About.dc.html`.
-- Sections: intro ("Hi, I'm Lance.") → portrait photo (4:5) → "How I got here" story → "How I train" (four principles on a `--linen-dark` band) → "Training & credentials" (four checklist tiles) → CTA band.
+- Sections: intro ("Hi, I'm Lance.") → portrait photo (4:5) → "How I got here" story → "How I train" (four principles on a `--linen-dark` band) → CTA band. The mockup's "Training & credentials" section is intentionally not built (owner decision: no certifications to list).
 - Desktop: photo left (~45%) and intro + story right; principles in a 2×2 grid.
 
 **Services** (`/services`). Reference: `Services.dc.html`.
@@ -287,8 +287,6 @@ Every `[BRACKETED]` value in the reference files is something the owner still ha
   - `[Referral to a vet behaviorist…]`
 - **About:**
   - bracketed story details
-  - certifications ×4 (name, organization, year)
-  - insurance provider
   - training-method confirmation (also in the FAQ)
 - **Testimonials:** three real client quotes with names, dogs' names and neighborhoods, used with permission
 - **Social:** Instagram, Facebook and Google reviews URLs
