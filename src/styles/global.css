@@ -34,8 +34,6 @@
   --on-green-divider: rgba(247, 240, 230, 0.3); /* rule inside green service cards */
   --tag-on-green: rgba(33, 29, 24, 0.3); /* tag pill on green cards */
   --caption-bg: rgba(20, 17, 13, 0.62); /* hero photo caption chip */
-  --sticky-bg: rgba(239, 227, 208, 0.97); /* sticky mobile CTA bar */
-  --shadow-sticky: 0 -8px 24px rgba(33, 29, 24, 0.14);
   --shadow-card: 0 1px 2px rgba(33, 29, 24, 0.06), 0 8px 24px rgba(33, 29, 24, 0.06);
   --shadow-card-hover: 0 2px 4px rgba(33, 29, 24, 0.08), 0 14px 32px rgba(33, 29, 24, 0.12); /* card hover lift */
   --shadow-btn-hover: 0 6px 16px rgba(33, 29, 24, 0.22); /* primary button hover lift */
@@ -65,7 +63,6 @@
   --radius-card-sm: 14px;
   --radius-input: 12px;
   --radius-pill: 999px;
-  --sticky-height: 86px; /* sticky mobile CTA bar, excluding safe-area inset */
 }
 
 /* Reset */
@@ -103,13 +100,6 @@ body {
   font-size: 17px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-}
-
-/* Room for the fixed mobile CTA so it never covers the footer */
-@media (max-width: 767.98px) {
-  body {
-    padding-bottom: calc(var(--sticky-height) + env(safe-area-inset-bottom, 0px));
-  }
 }
 
 @media (min-width: 768px) {

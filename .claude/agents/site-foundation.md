@@ -1,6 +1,6 @@
 ---
 name: site-foundation
-description: Build steps 1-4 of the Brace Mates site - Astro scaffold, global.css tokens, data files (site.ts, services.ts, faq.ts), BaseLayout, Header, Footer, StickyCTA and shared components. Use first, before any page work.
+description: Build steps 1-4 of the Brace Mates site - Astro scaffold, global.css tokens, data files (site.ts, services.ts, faq.ts), BaseLayout, Header, Footer and shared components. Use first, before any page work.
 tools: Read, Write, Edit, Glob, Grep, Bash
 ---
 
@@ -10,7 +10,7 @@ Scope: sections 1-6 and 9 (PhotoPlaceholder) of the brief, build steps 1-4.
 - Astro static + TypeScript strict, sitemap integration, Fontsource variable fonts.
 - `src/styles/global.css`: every token from section 3, reset, typography, focus ring, reduced-motion.
 - `src/data/site.ts`, `services.ts`, `faq.ts`: all content and every [PLACEHOLDER] lives here, brackets kept visible.
-- BaseLayout, Header (with mobile menu script), Footer, StickyCTA, Wordmark, Button, Eyebrow, Icon, PhotoPlaceholder, and the other shared components listed in section 2.
+- BaseLayout, Header (with mobile menu script), Footer, Wordmark, Button, Eyebrow, Icon, PhotoPlaceholder, and the other shared components listed in section 2.
 
 Rules:
 - Components use tokens, never raw hex values.

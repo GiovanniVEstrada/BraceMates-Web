@@ -53,9 +53,9 @@ src/
     services.ts      # 4 services (name, tag, description, included[], price, priceNote)
     faq.ts           # grouped Q&As
   styles/global.css  # tokens, reset, base type, focus styles
-  layouts/BaseLayout.astro   # <head>, fonts, skip link, Header, Footer, StickyCTA
+  layouts/BaseLayout.astro   # <head>, fonts, skip link, Header, Footer
   components/
-    Header.astro  Footer.astro  StickyCTA.astro
+    Header.astro  Footer.astro
     Wordmark.astro  Button.astro  Eyebrow.astro  Icon.astro
     PhotoPlaceholder.astro  ServiceCard.astro  ServiceCardCompact.astro
     Testimonial.astro  StepList.astro  CTABand.astro
@@ -161,7 +161,7 @@ Photo placeholder tones (until real photos exist): `#B3B297`, `#C2B39B`, `#DCCDB
 - **Follow along:** Instagram / Facebook / Google reviews outline pills, with URLs from `site.ts`
 - **Bottom row:** © current year, Brace Mates Dog Training
 
-**Sticky mobile CTA:** a fixed bar at the bottom below 768px. Translucent linen background, top hairline, soft upward shadow, and a full-width copper "Book a free call" button with a phone icon linking to `/contact`. On `/contact` it becomes a plain `tel:` "Call" link instead. Add `padding-bottom` to `<body>` so it never covers the footer, and include `env(safe-area-inset-bottom)`. Hide it on desktop.
+**Sticky header:** the header is `position: sticky` on all screen sizes, so the nav (desktop) or the phone and menu buttons (mobile) stay reachable while scrolling. **There is no sticky bottom "Book a free call" bar** (owner decision: it was redundant with the header phone button and the "Book a free consultation" buttons on the pages).
 
 ---
 
@@ -311,7 +311,7 @@ Add `scripts/check-placeholders.mjs` and `npm run check:placeholders`. It scans 
 - [ ] Desktop inner pages are consistent with Home desktop.
 - [ ] All copy is verbatim from the reference files; no invented facts, prices, credentials or reviews.
 - [ ] All nav, footer, `tel:` and `mailto:` links work.
-- [ ] The sticky CTA shows only on mobile and never hides content.
+- [ ] The sticky header never covers focused elements or anchor targets (`scroll-padding-top` is set).
 - [ ] Lighthouse ≥ 95 for Performance, Accessibility, Best Practices and SEO (mobile).
 - [ ] `npm run check:placeholders` is clean, or the owner has approved what remains, before going public.
 
@@ -324,7 +324,7 @@ Commit after each step.
 1. Scaffold Astro (minimal template, TypeScript strict), add the sitemap integration and fonts.
 2. `global.css`: tokens, reset, base typography, focus styles, utility container.
 3. Data files: `site.ts`, `services.ts`, `faq.ts`, with all placeholders.
-4. `BaseLayout`, `Header` (with mobile menu), `Footer`, `StickyCTA`, `Wordmark`, `Button`, `Icon`, `PhotoPlaceholder`.
+4. `BaseLayout`, `Header` (with mobile menu), `Footer`, `Wordmark`, `Button`, `Icon`, `PhotoPlaceholder`.
 5. Home: mobile first, then desktop. Compare against both references.
 6. About, Services, Gallery, FAQ, Contact (mobile per reference, desktop per section 7).
 7. `404` (no form or `/thanks`; see section 8).
