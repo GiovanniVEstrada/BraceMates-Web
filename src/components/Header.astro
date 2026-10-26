@@ -9,7 +9,8 @@ import Wordmark from './Wordmark.astro';
 import Icon from './Icon.astro';
 import Button from './Button.astro';
 
-const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+// Pages are built as about.html etc. (build.format: 'file'), so strip ".html" to compare against nav hrefs.
+const path = Astro.url.pathname.replace(/(index)?\.html$/, '').replace(/\/+$/, '') || '/';
 const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href || path.startsWith(`${href}/`));
 ---
 

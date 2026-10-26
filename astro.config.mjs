@@ -5,5 +5,9 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://bracematesdogtraining.com',
   output: 'static',
+  // Build /about as about.html and link to /about (no trailing slash). Netlify serves it directly,
+  // instead of answering /about with a redirect to /about/ on every internal navigation.
+  trailingSlash: 'never',
+  build: { format: 'file' },
   integrations: [sitemap()],
 });
