@@ -2,6 +2,8 @@
 /**
  * Text wordmark until the real logo arrives. Swap the contents here to replace it everywhere.
  * `size`: 'header' (28px desktop / 23px mobile), 'footer' (26px desktop / 24px mobile).
+ * The header version shows a dashed LOGO placeholder box beside the name; replace
+ * `.wordmark__logo` with an <Image> of the real logo when it exists.
  * Renders a link home. Set `link={false}` to render a plain block.
  */
 import { site } from '../data/site';
@@ -21,21 +23,45 @@ const Tag = link ? 'a' : 'span';
   href={link ? '/' : undefined}
   aria-label={link ? `${site.name}, home` : undefined}
 >
-  <span class="wordmark__name" aria-hidden={link ? 'true' : undefined}>{site.shortName}</span>
-  <span class="wordmark__sub" aria-hidden={link ? 'true' : undefined}>{site.wordmarkSub}</span>
+  {size === 'header' && <span class="wordmark__logo" aria-hidden="true">Logo</span>}
+  <span class="wordmark__text">
+    <span class="wordmark__name" aria-hidden={link ? 'true' : undefined}>{site.shortName}</span>
+    <span class="wordmark__sub" aria-hidden={link ? 'true' : undefined}>{site.wordmarkSub}</span>
+  </span>
 </Tag>
 
 <style>
   .wordmark {
     display: flex;
-    flex-direction: column;
-    gap: 4px;
+    align-items: center;
+    gap: 10px;
     padding: 6px 0;
     text-decoration: none;
     color: var(--linen-light);
   }
   .wordmark:hover {
     color: var(--linen-light);
+  }
+  .wordmark__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border: 1.5px dashed var(--border-on-dark-pill);
+    border-radius: 10px;
+    color: var(--on-dark-muted);
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .wordmark__text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
   .wordmark__name {
     font-family: var(--font-display);
@@ -60,8 +86,17 @@ const Tag = link ? 'a' : 'span';
   }
   @media (min-width: 768px) {
     .wordmark {
-      gap: 5px;
+      gap: 14px;
       padding: 4px 0;
+    }
+    .wordmark__logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      font-size: 10px;
+    }
+    .wordmark__text {
+      gap: 5px;
     }
     .wordmark__name {
       font-size: 28px;
