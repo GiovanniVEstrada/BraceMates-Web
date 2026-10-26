@@ -338,9 +338,12 @@ p {
   /* [scroll-spotlight] Phones, service cards only (data-spotlight): the card grows from 0.94 to 1,
      brightens from 0.75 to 1 and sharpens from a 1.5px blur as it nears the vertical middle,
      easing back at the edges. Uses `scale` + `filter` (never opacity/translate) so it runs
-     alongside scroll-reveal. It holds full strength across the middle 40% of the travel
-     (30%-70%). Max scale is 1, so no overflow past the gutter.
-     Tune: the 0.94, 0.75 and 1.5px values and the 30%/70% stops below. To turn off, delete this block. */
+     alongside scroll-reveal. The change is spread across the whole visible pass: peak strength
+     only when the card is centred (50%), a gradual build either side, and the range is limited to
+     cover 10%-90% so none of it is spent while the card is still off screen. Max scale is 1, so
+     no overflow past the gutter.
+     Tune: the 0.94, 0.75 and 1.5px values, the 50% peak and the cover 10%/90% range below.
+     To turn off, delete this block. */
   @supports (animation-timeline: view()) {
     @keyframes spotlight {
       0%,
@@ -348,8 +351,7 @@ p {
         scale: 0.94;
         filter: brightness(0.75) blur(1.5px);
       }
-      30%,
-      70% {
+      50% {
         scale: 1;
         filter: brightness(1) blur(0);
       }
@@ -362,7 +364,7 @@ p {
         animation-timeline: view(), view();
         animation-range:
           entry 0% entry 35%,
-          cover 0% cover 100%;
+          cover 10% cover 90%;
       }
     }
   }
