@@ -75,6 +75,7 @@ const widthsFor = (span?: Span) => (wideish(span) ? [400, 800, 1200] : [200, 400
                 alt={t.alt ?? ''}
                 widths={widthsFor(t.span)}
                 sizes={sizesFor(t.span)}
+                quality={62}
                 loading="lazy"
                 decoding="async"
                 style={`object-position: ${t.pos ?? 'center'}`}
