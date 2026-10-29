@@ -158,7 +158,7 @@ Photo placeholder tones (until real photos exist): `#B3B297`, `#C2B39B`, `#DCCDB
 **Footer** (`--espresso` bg): wordmark plus the one-liner "In-home dog training in [CITY / AREA]. Practical help for you and your dog, together." Then columns:
 - **Contact:** phone, email, "Serving [CITY / AREA] and nearby"
 - **Explore:** page links
-- **Follow along:** Instagram / Facebook / Google reviews outline pills, with URLs from `site.ts`
+- **Follow along:** all-links page / Instagram / Facebook outline pills, with URLs from `site.ts` (no Google reviews link until the owner has a Google Business Profile)
 - **Bottom row:** © current year, Brace Mates Dog Training
 
 **Sticky header:** the header is `position: sticky` on all screen sizes, so the nav (desktop) or the phone and menu buttons (mobile) stay reachable while scrolling. **There is no sticky bottom "Book a free call" bar** (owner decision: it was redundant with the header phone button and the "Book a free consultation" buttons on the pages).

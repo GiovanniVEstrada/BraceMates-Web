@@ -12,34 +12,36 @@ export const site = {
   /** Keep in sync with `site` in astro.config.mjs. Domain is not bought yet. */
   url: 'https://bracematesdogtraining.com',
 
-  city: '[CITY / AREA]',
-  phone: '[PHONE]',
-  email: '[EMAIL]',
+  city: 'Mid Michigan',
+  phone: '(989) 780-6105',
+  email: 'bracematesdogtrainingllc@gmail.com',
 
   footerBlurb: 'Practical help for you and your dog, together.',
 
+  /** No Google Business Profile yet, so there is no Google reviews link. */
   socials: [
     { label: 'All links', url: 'https://paa.ge/bracemates/en' },
-    { label: 'Instagram', url: 'https://example.com/instagram' },
-    { label: 'Facebook', url: 'https://example.com/facebook' },
-    { label: 'Google reviews', url: 'https://example.com/google' },
+    { label: 'Instagram', url: 'https://www.instagram.com/bracematesdogtraining/' },
+    { label: 'Facebook', url: 'https://www.facebook.com/people/Brace-Mates-Dog-Training/61579234718555/' },
   ],
   socialsNote: '[Add your real profile links]',
 
   serviceArea: {
-    towns: ['[Town]', '[Town]', '[Town]'],
-    travelFeeNote: '[travel fee may apply beyond X miles]',
+    /** The owner's list, as given. Shown after "including" on the Contact page. */
+    areas: ['Bay City', 'Clare', 'Clinton', 'Eaton', 'Genesee', 'Gladwin', 'Lapeer', 'Midland', 'Saginaw'],
+    travelFeeNote: 'a service fee applies beyond 75 miles from Bay City, and a phone consultation is always free',
   },
 
   /** Offer details that appear inline in copy. */
   offer: {
-    freeCallLength: '[20 minutes]',
+    freeCallLength: '10–30 minutes',
+    /** Still open: phone evaluation is free; an in-person evaluation has a fee that depends on the service. */
     evaluationFee: '[free / $___]',
-    textSupport: '[and text support between sessions]',
-    replyTime: '[1 business day]',
-    sessionLength: '[60 minutes]',
-    puppySessionLength: '[45 minutes]',
-    mannersEstimate: '[3–4 sessions]',
+    textSupport: 'and text support between sessions',
+    replyTime: '1 business day',
+    sessionLength: '1 hour',
+    puppySessionLength: '30–45 minutes',
+    mannersEstimate: '3–4 sessions',
   },
 
   ages: {

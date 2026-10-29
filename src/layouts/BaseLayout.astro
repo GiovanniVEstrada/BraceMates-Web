@@ -31,7 +31,7 @@ const canonical = new URL(publicPath, Astro.site ?? site.url).href;
 const ogImage = new URL('/og-image.jpg', Astro.site ?? site.url).href;
 
 // LocalBusiness JSON-LD: only fields that are real (not bracketed placeholders) are output.
-const areas = [site.city, ...site.serviceArea.towns].filter((a) => !isPlaceholder(a));
+const areas = [site.city, ...site.serviceArea.areas].filter((a) => !isPlaceholder(a));
 const sameAs = realSocials().map((s) => s.url);
 const jsonLd: Record<string, unknown> = {
   '@context': 'https://schema.org',

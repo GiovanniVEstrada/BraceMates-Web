@@ -5,7 +5,9 @@ import Button from '../components/Button.astro';
 import Icon from '../components/Icon.astro';
 import { site, telHref, mailHref, hasPlaceholderSocials } from '../data/site';
 
-const [town1, town2, town3] = site.serviceArea.towns;
+// "Bay City, Clare and Saginaw": comma-separated with "and" before the last item.
+const { areas } = site.serviceArea;
+const areaList = areas.length > 1 ? `${areas.slice(0, -1).join(', ')} and ${areas[areas.length - 1]}` : areas.join('');
 ---
 
 <BaseLayout
@@ -45,7 +47,7 @@ const [town1, town2, town3] = site.serviceArea.towns;
         <section class="area" aria-labelledby="area-title">
           <h2 id="area-title">Service area</h2>
           <p>
-            I train in homes across {site.city} and nearby towns, including {town1}, {town2} and {town3}. Outside the area? Ask anyway — {site.serviceArea.travelFeeNote}.
+            I train in homes across {site.city} and nearby, including {areaList}. Outside the area? Ask anyway — {site.serviceArea.travelFeeNote}.
           </p>
         </section>
 
