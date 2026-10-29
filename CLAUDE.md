@@ -155,7 +155,7 @@ Photo placeholder tones (until real photos exist): `#B3B297`, `#C2B39B`, `#DCCDB
 - **Desktop:** wordmark left; nav (Home, About, Services, Gallery, FAQ, Contact) with the current page as a translucent pill (`aria-current="page"`). There is no "Call [PHONE]" pill on desktop (owner decision); the Contact page and Footer carry the phone number.
 - **Mobile:** wordmark, a 44px envelope (mail) icon button that links to `/contact` (`aria-label="Contact"`; owner decision, so visitors see all contact options instead of dialing straight away) and a 44px menu button (`aria-expanded`, `aria-controls`). The menu opens a panel below the header bar with large nav links (48px rows) and a full-width "Call [PHONE]" outline pill. Close it on Escape and on link click.
 
-**Footer** (`--espresso` bg): wordmark plus the one-liner "In-home dog training in [CITY / AREA]. Practical help for you and your dog, together." Then columns:
+**Footer** (`--espresso` bg): wordmark plus the one-liner "Dog training in [CITY / AREA]. Practical help for you and your dog, together." Then columns:
 - **Contact:** phone, email, "Serving [CITY / AREA] and nearby"
 - **Explore:** page links
 - **Follow along:** all-links page / Instagram / Facebook outline pills, with URLs from `site.ts` (no Google reviews link until the owner has a Google Business Profile)
@@ -171,7 +171,7 @@ Section order and copy come from the reference files. Desktop notes for inner pa
 
 **Home** (`/`). References: `Main.dc.html` and `HomeMobile.dc.html`.
 1. **Hero:** full-width photo with `--hero-overlay`, min-height 680px desktop / 600px mobile, content left-aligned.
-   - Eyebrow, then the H1 "In-home dog training in [CITY / AREA]", then the subtitle.
+   - Eyebrow, then the H1 "Dog training in [CITY / AREA]" (not "In-home": hunting dog training happens at the trainer's place), then the subtitle.
    - Primary CTA "Book a free consultation" → `/contact`, plus the link "or call [PHONE]".
 2. **Problems:** eyebrow "Sound familiar?", H2, two paragraphs. Two columns on desktop.
 3. **Services preview:** four compact OD-green cards with linen-light text.
@@ -236,7 +236,7 @@ The site has no contact form, no Netlify Forms and no `/thanks` page. Visitors c
 
 ## 10. SEO and local-business basics
 
-- Unique `<title>` and meta description per page. Pattern: "In-home Dog Training in [CITY / AREA] | Brace Mates Dog Training". Draft the descriptions from page copy.
+- Unique `<title>` and meta description per page. Pattern: "Dog Training in [CITY / AREA] | Brace Mates Dog Training". Draft the descriptions from page copy.
 - Open Graph and Twitter tags. `og-image.jpg` is 1200×630; use the hero photo plus the wordmark when available.
 - JSON-LD `LocalBusiness` on every page, built from `site.ts`: name, url, telephone, email, areaServed, sameAs (socials). Don't output fields that are still placeholders.
 - `@astrojs/sitemap`, `robots.txt`, canonical URLs, `<html lang="en">`.
@@ -259,37 +259,15 @@ The site has no contact form, no Netlify Forms and no `/thanks` page. Visitors c
 
 ## 12. Placeholders: keep, centralize, never invent
 
-Every `[BRACKETED]` value in the reference files is something the owner still has to confirm. **Keep the brackets visible** until filled, and pull them from `src/data/site.ts`, `services.ts` and `faq.ts` so they're edited in one place:
+Every `[BRACKETED]` value is something the owner still has to confirm. **Keep the brackets visible** until filled, and pull them from `src/data/site.ts`, `services.ts` and `faq.ts` so they're edited in one place.
 
-- **Contact:**
-  - `[CITY / AREA]`
-  - `[PHONE]`
-  - `[EMAIL]`
-  - service-area towns `[Town]` ×3
-  - travel fee note
-- **Pricing:**
-  - "Starting at" prices ×4
-  - session counts `[3]` / `[4]` / `[6]`
-  - price notes
-- **Offer details:**
-  - free call length `[20 minutes]`
-  - evaluation `[free / $___]`
-  - `[text support between sessions]`
-  - session lengths `[60 minutes]` / `[45 minutes]`
-  - manners estimate `[3–4 sessions]`
-  - reply time `[1 business day]`
-- **Ages:**
-  - puppy range `[8–20 weeks]`
-  - minimum age `[8 weeks]`
-  - breed exceptions note
-- **Anxiety & Confidence service:**
-  - `[Video check-ins…]`
-  - `[Referral to a vet behaviorist…]`
-- **About:**
-  - bracketed story details
-  - training-method confirmation (also in the FAQ)
+**Filled in from the owner's answers (2026-10-28), do not revert:** phone, email, area (Mid Michigan plus his area list), travel fee note, Instagram/Facebook links, free call length, text support, reply time, session lengths, manners estimate, and the **four services and their prices** (Puppy Training, Basic Obedience, Started & Broke Gun Dog Training, Started Retriever Training). These replace the mockup's four services (Puppy Foundations, Manners & Leash Skills, Reactivity, Anxiety & Confidence), which Lance does not offer. Hunting dog training usually happens at his place in Alger, MI; obedience work can travel to the client. The business is everyday pet training with hunting dog training as one part.
+
+**Still open:**
+- **Ages:** puppy range, minimum age, breed exceptions note
+- **About:** bracketed story details, and the training-method confirmation. The FAQ "What training methods do you use?" answer is intentionally a placeholder: the mockup's "no prong, choke or shock collars" claim must not go back on the site unless Lance confirms it (gun dog work often uses training collars).
 - **Testimonials:** three real client quotes with names, dogs' names and neighborhoods, used with permission
-- **Social:** Instagram, Facebook and Google reviews URLs
+- **Google reviews link:** none yet; he has no Google Business Profile
 
 Add `scripts/check-placeholders.mjs` and `npm run check:placeholders`. It scans `src/` for `[` + uppercase/`$` patterns and lists any that remain. Run it before launch.
 

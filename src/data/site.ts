@@ -35,8 +35,6 @@ export const site = {
   /** Offer details that appear inline in copy. */
   offer: {
     freeCallLength: '10–30 minutes',
-    /** Still open: phone evaluation is free; an in-person evaluation has a fee that depends on the service. */
-    evaluationFee: '[free / $___]',
     textSupport: 'and text support between sessions',
     replyTime: '1 business day',
     sessionLength: '1 hour',
@@ -51,9 +49,8 @@ export const site = {
       '[Note any exceptions here, e.g. dogs with a serious bite history may need a different first step.]',
   },
 
-  /** Confirmation flag that appears in the About page and FAQ. */
+  /** Confirmation flag that appears in the About page. The FAQ method answer is held back until Lance describes his approach. */
   methodConfirm: '[confirm]',
-  methodConfirmFaq: '[Confirm this matches your approach.]',
 } as const;
 
 /** True when a value is still an unfilled [BRACKETED] placeholder. */
@@ -93,12 +90,12 @@ export const howItWorks = {
       body: `Tell me about your dog and what’s been tough lately. In about ${site.offer.freeCallLength} we’ll figure out if I’m the right fit — no pressure, no sales pitch.`,
     },
     {
-      title: 'Meet at your place',
-      body: `I come to you for an in-home evaluation ${site.offer.evaluationFee}. I’ll see your dog at home and on your usual walk, then we build a plan together.`,
+      title: 'Choose your training',
+      body: 'We pick the package that fits you and your dog. For obedience work I can travel to you. Hunting dog training usually happens at my place in Alger, MI, and other arrangements can be made.',
     },
     {
       title: 'Train together',
-      body: `Hands-on sessions with simple homework in between. You’ll get written notes after every visit ${site.offer.textSupport}.`,
+      body: `Hands-on sessions with simple homework in between, ${site.offer.textSupport}.`,
     },
   ],
 } as const;
@@ -107,7 +104,7 @@ export const howItWorks = {
 export const testimonialPlaceholders = [
   {
     quote:
-      '[Placeholder: a 2–3 sentence quote from a client whose dog struggled with reactivity — what walks were like before, and what changed.]',
+      '[Placeholder: a 2–3 sentence quote from a client whose dog went through training — what things were like before, and what changed.]',
     name: '[Client name] & [Dog’s name]',
     location: '[Neighborhood, City]',
   },
@@ -118,7 +115,7 @@ export const testimonialPlaceholders = [
   },
   {
     quote:
-      '[Placeholder: a quote about leash walking or anxiety — one specific moment where they noticed the difference.]',
+      '[Placeholder: a quote from a hunting or retriever client — one specific moment in the field where they noticed the difference.]',
     name: '[Client name] & [Dog’s name]',
     location: '[Neighborhood, City]',
   },

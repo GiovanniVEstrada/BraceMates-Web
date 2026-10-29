@@ -20,7 +20,9 @@ export const faqGroups: FaqGroup[] = [
     items: [
       {
         q: 'What training methods do you use?',
-        a: `Reward-based, science-backed training. I teach your dog what to do instead of punishing what they get wrong — using food, toys, play and praise. No prong, choke or shock collars. ${site.methodConfirmFaq}`,
+        // Held back on purpose: the mockup copy claimed "reward-based ... no prong, choke or shock collars", which
+        // may not be true for gun dog work. Replace with Lance's own description (questionnaire Q25).
+        a: '[Awaiting Lance’s description of his training approach and the tools he uses.]',
         open: true,
       },
       {
@@ -40,7 +42,7 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: 'How many sessions will we need?',
-        a: `It depends on your dog and your goals. Manners work often takes ${site.offer.mannersEstimate}; reactivity and anxiety usually take longer. After the evaluation I’ll give you an honest estimate — no surprise add-ons.`,
+        a: `It depends on your dog and your goals. Basic obedience can often be done in about ${site.offer.mannersEstimate}, though more are always helpful. Broke gun dog training has no set time limit, because every dog is different. After the free call I’ll tell you what to expect.`,
       },
     ],
   },
@@ -49,8 +51,8 @@ export const faqGroups: FaqGroup[] = [
     title: 'What to expect',
     items: [
       {
-        q: 'What happens at the first visit?',
-        a: 'We start with your goals and your dog’s history. Then I watch how your dog handles their normal world — the house, the doorbell, the walk. You’ll leave with a clear plan and one or two things to start practicing right away.',
+        q: 'What happens first?',
+        a: 'We start with a free phone consultation. We talk through your goals and your dog’s history, then choose the training that fits. For obedience work I can travel to you, and hunting dog training usually happens at my place in Alger, MI.',
         open: true,
       },
       {
