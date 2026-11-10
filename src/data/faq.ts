@@ -20,14 +20,9 @@ export const faqGroups: FaqGroup[] = [
     items: [
       {
         q: 'What training methods do you use?',
-        // Held back on purpose: the mockup copy claimed "reward-based ... no prong, choke or shock collars", which
-        // may not be true for gun dog work. Replace with Lance's own description (questionnaire Q25).
-        a: '[Awaiting Lance’s description of his training approach and the tools he uses.]',
+        // Lance's own description (2026-11-10). Do not restore the mockup's "reward-based, no prong, choke or shock" claim.
+        a: 'I base my training on B.F. Skinner’s theory of operant conditioning, which includes positive and negative reinforcement as well as positive and negative punishment. I have core ideas and steps, but they change for each dog. A program built to work for every dog wouldn’t work for any of them.',
         open: true,
-      },
-      {
-        q: 'Will my dog only listen when I have treats?',
-        a: 'No. Treats help early on, while we’re teaching something new. Then we fade them out and swap in real-life rewards your dog already loves — sniffing, walks, play and your attention.',
       },
     ],
   },
@@ -61,7 +56,7 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: 'What should I have ready?',
-        a: 'Your dog’s favorite treats (cut small), a flat collar or harness, and a regular 4–6 ft leash. I’ll bring anything else we need.',
+        a: 'It depends on the service, but I have all my own training tools on site. I can also use tools you already have or want to use.',
       },
     ],
   },
@@ -71,12 +66,12 @@ export const faqGroups: FaqGroup[] = [
     items: [
       {
         q: 'What ages do you work with?',
-        a: `Puppies from ${site.ages.minAge} through seniors. It’s never too late to learn — older dogs often surprise their people.`,
+        a: 'There’s no age restriction, and all dogs are welcome. A dog’s age can affect what it can handle in training, and we’ll talk through that on the free call.',
         open: true,
       },
       {
         q: 'Do you work with all breeds?',
-        a: `Yes — all breeds, sizes and mixes. ${site.ages.breedExceptions}`,
+        a: 'Yes. There’s no breed restriction, and all dogs are welcome.',
       },
     ],
   },
@@ -92,7 +87,7 @@ export const faqCopy = {
   },
 } as const;
 
-/** Flat list of all nine Q&As. */
+/** Flat list of all Q&As. */
 export const allFaqs: FaqItem[] = faqGroups.flatMap((g) => g.items);
 
 /** FAQPage JSON-LD object. Serialize with JSON.stringify in a <script type="application/ld+json">. */

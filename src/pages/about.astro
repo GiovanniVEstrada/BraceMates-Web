@@ -4,9 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Eyebrow from '../components/Eyebrow.astro';
 import aboutPhoto from '../assets/images/photo-8-man-three-dogs-steps.png';
 import CTABand from '../components/CTABand.astro';
-import { site, about } from '../data/site';
-
-const s = about.storyPlaceholders;
+import { site } from '../data/site';
 
 // Page-specific copy, verbatim from reference/About.dc.html.
 const principles = [
@@ -15,8 +13,8 @@ const principles = [
     body: 'Barking, pulling and jumping all mean something. We figure out the why first, so the fix actually sticks.',
   },
   {
-    title: 'Teach, don’t punish',
-    body: `I use reward-based methods ${site.methodConfirm} to show your dog what to do instead. It’s kinder, and it builds trust between you.`,
+    title: 'Every dog is different',
+    body: 'A program built to work for every dog wouldn’t work for any of them. I have core ideas and steps, and I adjust them for each dog as training goes.',
   },
   {
     title: 'You’re half the team',
@@ -57,17 +55,16 @@ const principles = [
       <section class="story" aria-labelledby="story-title">
         <h2 id="story-title">How I got here</h2>
         <p>
-          Like a lot of trainers, I got into this because of one dog. {s.dogName} was {s.dogDescription}, and I tried
-          everything — most of it didn’t work. What finally did was learning how dogs actually learn, and meeting them
-          where they were.
+          Like most dog trainers, my passion blossomed from one dog. Zuka was my first hunting buddy. I took her
+          everywhere; I’ve been from South Dakota down to Texas with her at my side. I’m so grateful to have the chance
+          to help other people experience a new side to dog ownership.
         </p>
         <p>
-          Since then I’ve {s.experience} across {site.city}. {s.background}
+          For my dog training background, I can thank Dem Feuerhaus Gun Dogs for what I know today. I worked down in
+          Texas and did nothing but dog training and tacos. I have nothing but fond memories of the dogs and the people
+          I met along the way. Now I have the opportunity to start my own operation in Michigan.
         </p>
-        <p>
-          These days, my favorite part of the job is the moment someone tells me a walk felt easy. That’s what I’m here
-          for.
-        </p>
+        <p>I’m always down to talk hunting, dog training, or a mix of both.</p>
       </section>
     </div>
   </div>

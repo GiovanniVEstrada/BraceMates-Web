@@ -42,15 +42,6 @@ export const site = {
     mannersEstimate: '3–4 sessions',
   },
 
-  ages: {
-    puppyRange: '[8–20 weeks]',
-    minAge: '[8 weeks]',
-    breedExceptions:
-      '[Note any exceptions here, e.g. dogs with a serious bite history may need a different first step.]',
-  },
-
-  /** Confirmation flag that appears in the About page. The FAQ method answer is held back until Lance describes his approach. */
-  methodConfirm: '[confirm]',
 } as const;
 
 /** True when a value is still an unfilled [BRACKETED] placeholder. */
@@ -100,6 +91,9 @@ export const howItWorks = {
   ],
 } as const;
 
+/** Set to true once real client quotes replace the placeholders below. Hides the Home testimonials section while false. */
+export const showTestimonials = false;
+
 /** Home testimonial slots. Placeholders only - never write fake reviews. */
 export const testimonialPlaceholders = [
   {
@@ -120,14 +114,3 @@ export const testimonialPlaceholders = [
     location: '[Neighborhood, City]',
   },
 ] as const;
-
-/** About page placeholders (bracketed story details). The credentials section was removed at the owner's request. */
-export const about = {
-  storyPlaceholders: {
-    dogName: '[Dog’s name]',
-    dogDescription: '[a nervous rescue who barked at everything that moved]',
-    experience: '[trained dogs for X years / worked with X+ families]',
-    background:
-      '[Add any relevant background — shelter work, fostering, an apprenticeship, a past career that shapes how you teach.]',
-  },
-} as const;

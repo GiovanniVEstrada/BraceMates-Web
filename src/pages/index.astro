@@ -8,7 +8,7 @@ import ServiceCardCompact from '../components/ServiceCardCompact.astro';
 import StepList from '../components/StepList.astro';
 import Testimonial from '../components/Testimonial.astro';
 import CTABand from '../components/CTABand.astro';
-import { site, telHref, howItWorks, testimonialPlaceholders } from '../data/site';
+import { site, telHref, howItWorks, testimonialPlaceholders, showTestimonials } from '../data/site';
 import { services, servicesCopy } from '../data/services';
 ---
 
@@ -92,7 +92,8 @@ import { services, servicesCopy } from '../data/services';
     </div>
   </section>
 
-  <!-- Testimonials (placeholders only) -->
+  <!-- Testimonials: hidden until real quotes exist. Flip showTestimonials in src/data/site.ts. -->
+  {showTestimonials && (
   <section class="reviews" aria-labelledby="reviews-title">
     <div class="container reviews__wrap">
       <div class="reviews__head" data-reveal>
@@ -111,6 +112,7 @@ import { services, servicesCopy } from '../data/services';
       <p class="reviews__swipe">Swipe for more</p>
     </div>
   </section>
+  )}
 
   <!-- Final CTA -->
   <CTABand tone="walnut" title="Ready for calmer walks and easier days?">
