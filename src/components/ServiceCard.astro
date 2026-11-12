@@ -1,7 +1,7 @@
 ---
 /**
  * Full Services-page card: tag pill, name, description, "What's included" checklist,
- * price block and "Ask about this" outline button. Pass a `Service` from src/data/services.ts.
+ * price block and "Inquire now" outline button. Pass a `Service` from src/data/services.ts.
  */
 import type { Service } from '../data/services';
 import Button from './Button.astro';
@@ -9,7 +9,7 @@ import Icon from './Icon.astro';
 
 interface Props {
   service: Service;
-  /** Where "Ask about this" goes. */
+  /** Where "Inquire now" goes. */
   href?: string;
 }
 const { service, href = '/contact' } = Astro.props;
@@ -37,7 +37,16 @@ const headingId = `svc-${service.slug}`;
       <strong>{service.price}</strong>
       <span class="card__price-label">{service.priceNote}</span>
     </p>
-    <Button href={href} variant="secondary" size="sm" aria-label={`Ask about ${service.name}`}>Ask about this</Button>
+    <Button
+      href={href}
+      variant="secondary"
+      size="sm"
+      icon="paw-print"
+      iconPosition="start"
+      blockMobile
+      class="card__cta"
+      aria-label={`Inquire about ${service.name}`}>Inquire now</Button
+    >
   </div>
 </article>
 
@@ -103,6 +112,18 @@ const headingId = `svc-${service.slug}`;
     margin-top: auto;
     padding-top: 16px;
     border-top: 1px solid var(--border);
+  }
+  .card__foot :global(.card__cta) {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  /* Phones: stack the price above a full-width button so every card's button matches */
+  @media (max-width: 767.98px) {
+    .card__foot {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 16px;
+    }
   }
   .card__price {
     display: flex;
