@@ -84,6 +84,10 @@ const { service, href = '/services' } = Astro.props;
   .card__link:hover {
     color: var(--linen-light);
   }
+  /* Copper ring is nearly invisible on OD green */
+  .card__link:focus-visible {
+    outline-color: var(--linen-light);
+  }
 
   /* Hover motion (tilt, glare, shadow) comes from [data-tilt] in global.css */
 

@@ -48,8 +48,12 @@ export const site = {
 export const isPlaceholder = (value: string): boolean => /\[[A-Z$\d]/.test(value);
 
 /** `tel:` href. Falls back to the bracketed value so the placeholder stays visible/greppable. */
-export const telHref = (): string =>
-  isPlaceholder(site.phone) ? `tel:${site.phone}` : `tel:${site.phone.replace(/[^\d+]/g, '')}`;
+export const telHref = (): string => {
+  if (isPlaceholder(site.phone)) return `tel:${site.phone}`;
+  const digits = site.phone.replace(/[^\d+]/g, '');
+  // Bare 10-digit US numbers get a +1 country code so they dial reliably from anywhere
+  return `tel:${/^\d{10}$/.test(digits) ? `+1${digits}` : digits}`;
+};
 
 export const mailHref = (): string => `mailto:${site.email}`;
 

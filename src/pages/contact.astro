@@ -23,11 +23,11 @@ const areaList = areas.length > 1 ? `${areas.slice(0, -1).join(', ')} and ${area
           <p>Call, text or email whenever suits you. I’ll get back to you within {site.offer.replyTime} to set up your free call.</p>
         </section>
 
-        <ul class="tiles" aria-label="Ways to reach me">
+        <ul role="list" class="tiles" aria-label="Ways to reach me">
           <li>
             <a class="tile" href={telHref()}>
               <span class="tile__icon" aria-hidden="true"><Icon name="phone" size={18} /></span>
-              <span class="tile__text"><span class="tile__label">Call or text</span><strong>{site.phone}</strong></span>
+              <span class="tile__text"><span class="tile__label">Call or text</span><strong class="tile__phone">{site.phone}</strong></span>
             </a>
           </li>
           <li>
@@ -53,7 +53,7 @@ const areaList = areas.length > 1 ? `${areas.slice(0, -1).join(', ')} and ${area
 
         <section class="follow" aria-labelledby="follow-title">
           <h2 id="follow-title">Follow along</h2>
-          <ul class="follow__list">
+          <ul role="list" class="follow__list">
             {site.socials.map((s) => <li><Button href={s.url} variant="secondary" size="sm">{s.label}</Button></li>)}
           </ul>
           {hasPlaceholderSocials() && <p class="follow__note">{site.socialsNote}</p>}
@@ -113,6 +113,10 @@ const areaList = areas.length > 1 ? `${areas.slice(0, -1).join(', ')} and ${area
     line-height: 1.35;
     min-width: 0;
     overflow-wrap: anywhere;
+  }
+  /* Keep the phone number whole; only the email may break */
+  .tile__phone {
+    white-space: nowrap;
   }
   .tile__label {
     font-size: 13px;

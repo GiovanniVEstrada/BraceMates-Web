@@ -15,7 +15,7 @@ interface Props {
 const { steps = howItWorks.steps } = Astro.props;
 ---
 
-<ol class="steps">
+<ol role="list" class="steps">
   {
     steps.map((step, i) => (
       <li class="step" data-reveal>

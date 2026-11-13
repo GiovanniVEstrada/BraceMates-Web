@@ -15,7 +15,7 @@ const year = new Date().getFullYear();
 
       <div class="footer__col">
         <h2 class="footer__h">Contact</h2>
-        <ul class="footer__list">
+        <ul role="list" class="footer__list">
           <li><a class="footer__link footer__link--tap" href={telHref()}>{site.phone}</a></li>
           <li><a class="footer__link footer__link--tap" href={mailHref()}>{site.email}</a></li>
           <li class="footer__text">Serving {site.city} and nearby</li>
@@ -24,14 +24,14 @@ const year = new Date().getFullYear();
 
       <div class="footer__col">
         <h2 class="footer__h">Explore</h2>
-        <ul class="footer__explore">
+        <ul role="list" class="footer__explore">
           {nav.map((item) => <li><a class="footer__link footer__link--plain" href={item.href}>{item.label}</a></li>)}
         </ul>
       </div>
 
       <div class="footer__col">
         <h2 class="footer__h">Follow along</h2>
-        <ul class="footer__socials">
+        <ul role="list" class="footer__socials">
           {site.socials.map((s) => <li><a class="footer__pill" href={s.url}>{s.label}</a></li>)}
         </ul>
         {hasPlaceholderSocials() && <p class="footer__note">{site.socialsNote}</p>}
@@ -106,6 +106,8 @@ const year = new Date().getFullYear();
     align-items: center;
     min-height: 44px;
     text-decoration: none;
+    overflow-wrap: anywhere;
+    min-width: 0;
   }
   .footer__link--tap::after,
   .footer__link--plain::after {

@@ -25,7 +25,7 @@
   --border-on-dark: rgba(205, 191, 168, 0.2); /* hairlines on dark */
   --border-on-dark-pill: rgba(205, 191, 168, 0.45); /* outlined pills on dark (footer socials) */
   --border-on-dark-strong: rgba(205, 191, 168, 0.6); /* outlined call pill on dark */
-  --hero-overlay: rgba(33, 29, 24, 0.6); /* over the hero photo; tune 0.45-0.7 */
+  --hero-overlay: rgba(33, 29, 24, 0.7); /* over the hero photo; tune 0.45-0.7 */
   --menu-backdrop: rgba(33, 29, 24, 0.55); /* dims the page behind the open mobile menu */
 
   /* Values taken from the reference inline styles */
@@ -221,6 +221,14 @@ p {
 :focus-visible {
   outline: 3px solid var(--copper);
   outline-offset: 3px;
+}
+/* Copper is under 3:1 on the tan bands and on OD green, so use a darker or lighter ring there */
+.band-dark :focus-visible,
+.cta--light :focus-visible {
+  outline-color: var(--walnut);
+}
+.band-walnut :focus-visible {
+  outline-color: var(--linen-light);
 }
 
 /* Utilities */

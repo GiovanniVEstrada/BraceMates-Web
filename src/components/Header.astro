@@ -318,7 +318,30 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href
       button.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     };
 
-    button.addEventListener('click', () => setOpen(button.getAttribute('aria-expanded') !== 'true'));
+    button.addEventListener('click', () => {
+      const open = button.getAttribute('aria-expanded') !== 'true';
+      setOpen(open);
+      // Move focus into the menu so Tab doesn't continue into the page behind it
+      if (open && window.matchMedia('(max-width: 767.98px)').matches) {
+        nav.querySelector<HTMLElement>('a')?.focus();
+      }
+    });
+
+    // Keep Tab inside the open mobile menu (button + links); Shift+Tab/Tab wrap around
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Tab' || button.getAttribute('aria-expanded') !== 'true') return;
+      if (!window.matchMedia('(max-width: 767.98px)').matches) return;
+      const stops = [button, ...Array.from(nav.querySelectorAll<HTMLElement>('a'))];
+      const first = stops[0];
+      const last = stops[stops.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
 
     // Close when the dimmed page behind the menu is tapped
     backdrop?.addEventListener('click', () => setOpen(false));

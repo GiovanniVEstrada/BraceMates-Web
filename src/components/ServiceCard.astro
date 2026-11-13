@@ -21,7 +21,7 @@ const headingId = `svc-${service.slug}`;
   <h2 id={headingId} class="card__name">{service.name}</h2>
   <p class="card__desc">{service.description}</p>
   <h3 class="card__incl">What’s included</h3>
-  <ul class="card__list">
+  <ul role="list" class="card__list">
     {
       service.included.map((item) => (
         <li>
@@ -45,7 +45,7 @@ const headingId = `svc-${service.slug}`;
       iconPosition="start"
       blockMobile
       class="card__cta"
-      aria-label={`Inquire about ${service.name}`}>Inquire now</Button
+      aria-label={`Inquire now about ${service.name}`}>Inquire now</Button
     >
   </div>
 </article>
