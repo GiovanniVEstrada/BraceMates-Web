@@ -63,6 +63,12 @@ const year = new Date().getFullYear();
     grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
     gap: 32px 40px;
   }
+  /* Tablet: two columns, so the Contact column is wide enough for the full email address */
+  @media (min-width: 600px) and (max-width: 899.98px) {
+    .footer__cols {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
   /* Desktop: give the Contact column room for the full email address */
   @media (min-width: 900px) {
     .footer__cols {
