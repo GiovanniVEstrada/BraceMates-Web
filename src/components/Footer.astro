@@ -17,7 +17,7 @@ const year = new Date().getFullYear();
         <h2 class="footer__h">Contact</h2>
         <ul role="list" class="footer__list">
           <li><a class="footer__link footer__link--tap" href={telHref()}>{site.phone}</a></li>
-          <li><a class="footer__link footer__link--tap" href={mailHref()}>{site.email}</a></li>
+          <li><a class="footer__link footer__link--tap footer__link--email" href={mailHref()}>{site.email}</a></li>
           <li class="footer__text">Serving {site.city} and nearby</li>
         </ul>
       </div>
@@ -63,6 +63,12 @@ const year = new Date().getFullYear();
     grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
     gap: 32px 40px;
   }
+  /* Desktop: give the Contact column room for the full email address */
+  @media (min-width: 900px) {
+    .footer__cols {
+      grid-template-columns: 1.2fr 1.5fr 0.8fr 1fr;
+    }
+  }
   .footer__brand,
   .footer__col {
     display: flex;
@@ -106,8 +112,11 @@ const year = new Date().getFullYear();
     align-items: center;
     min-height: 44px;
     text-decoration: none;
-    overflow-wrap: anywhere;
-    min-width: 0;
+  }
+  /* The email stays on one line (never split "com"); smaller on narrow phones so it fits at 320px */
+  .footer__link--email {
+    white-space: nowrap;
+    font-size: clamp(14px, 4.4vw, 16px);
   }
   .footer__link--tap::after,
   .footer__link--plain::after {

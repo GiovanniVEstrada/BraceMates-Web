@@ -116,6 +116,15 @@ const headingId = `svc-${service.slug}`;
   .card__foot :global(.card__cta) {
     flex-shrink: 0;
     white-space: nowrap;
+    /* Filled OD green with white text and paw (linen-light on OD green is about 5.8:1) */
+    background: var(--od-green);
+    border-color: var(--od-green);
+    color: var(--linen-light);
+  }
+  .card__foot :global(.card__cta:hover) {
+    background: var(--walnut);
+    border-color: var(--walnut);
+    color: var(--linen-light);
   }
   /* Phones: stack the price above a full-width button so every card's button matches */
   @media (max-width: 767.98px) {
